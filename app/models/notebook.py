@@ -11,3 +11,11 @@ class Notebook(db.Model):
 
     user = db.relationship("User", back_populates="notebooks")
     notes = db.relationship("Note", back_populates="notebook")
+
+    def to_dict(self):
+        return {
+          "id": self.id,
+          "name": self.name,
+          "userId": self.user_id,
+          "private": self.private
+        }

@@ -17,3 +17,16 @@ class Note(db.Model):
 
     user = db.relationship("User", back_populates="notes")
     notebook = db.relationship("Notebook", back_populates="notes")
+
+    def to_dict(self):
+        return {
+          "id": self.id,
+          "name": self.name,
+          "content": self.content,
+          "userId": self.user_id,
+          "notebookId": self.notebook_id,
+          "private": self.private,
+          "notesUrl": self.notes_url,
+          "createdAt": self.created_at,
+          "updatedAt": self.updated_at
+        }

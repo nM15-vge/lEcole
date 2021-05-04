@@ -10,3 +10,11 @@ class Library_Link(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     user = db.relationship("User", back_populates="library_links")
+
+    def to_dict(self):
+        return {
+          "id": self.id,
+          "title": self.title,
+          "library_link_url": self.library_link_url,
+          "userId": self.user_id
+        }
