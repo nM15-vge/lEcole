@@ -1,4 +1,4 @@
-import .db from db
+from .db import db
 
 
 class Notebook(db.Model):
@@ -10,3 +10,4 @@ class Notebook(db.Model):
     private = db.Column(db.Boolean, default=True)
 
     user = db.relationship("User", back_populates="notebooks")
+    notes = db.relationship("Note", back_populates="notebook")

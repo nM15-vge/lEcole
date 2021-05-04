@@ -1,7 +1,7 @@
-import .db from db
+from .db import db
 
 
-class Notes(db.Model):
+class Note(db.Model):
     __tablename__ = "notes"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -12,5 +12,8 @@ class Notes(db.Model):
                             nullable=True)
     private = db.Column(db.Boolean, default=True)
     notes_url = db.Column(db.String(255), nullable=True)
-    created_at = db.Column(db.TIMESTAMP, default=CURRENT_TIMESTAMP)
-    updated_at = db.Column(db.TIMESTAMP, default=CURRENT_TIMESTAMP)
+    created_at = db.Column(db.TIMESTAMP, default=db.func.current_timestamp())
+    updated_at = db.Column(db.TIMESTAMP, default=db.func.current_timestamp())
+
+    user = db.relationship("User", back_populates="notes")
+    notebook = db.relationship("Notebook", back_populates="notes")
