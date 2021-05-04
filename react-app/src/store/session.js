@@ -31,6 +31,7 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
     const data = await myFetch("/api/auth/logout");
+    console.log(data)
     dispatch(removeUser());
 };
 
