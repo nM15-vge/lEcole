@@ -8,7 +8,7 @@ const setUser = (user) => ({
     user
 });
 
-const removeUser = (user) => ({
+const removeUser = () => ({
     type: REMOVE_USER
 });
 
@@ -34,11 +34,13 @@ export const logout = () => async (dispatch) => {
     dispatch(removeUser());
 };
 
-export const signUp = (username, email, password) => async (dispatch)=> {
+export const signUp = (username, firstName, lastName, email, password) => async (dispatch)=> {
     const data = await myFetch("/api/auth/signup", {
         method: "POST",
         body: JSON.stringify({
             username,
+            first_name: firstName,
+            last_name: lastName,
             email,
             password,
         }),

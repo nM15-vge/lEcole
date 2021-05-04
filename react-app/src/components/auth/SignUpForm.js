@@ -1,20 +1,25 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../services/auth';
+import { signUp } from "../../store/session";
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+
+const SignUpForm = () => {
+  const dispatch = useDispatch();
+
+  const user = useSelector(state => state.session.user)
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, email, password);
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
+      dispatch(signUp(username, firstName, lastName, email, password));
     }
   };
 
@@ -34,7 +39,16 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     setRepeatPassword(e.target.value);
   };
 
-  if (authenticated) {
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
+  };
+
+
+  if (user) {
     return <Redirect to="/" />;
   }
 
@@ -47,6 +61,24 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           name="username"
           onChange={updateUsername}
           value={username}
+        ></input>
+      </div>
+      <div>
+        <label>First Name</label>
+        <input
+          type="text"
+          name="firstName"
+          onChange={updateFirstName}
+          value={firstName}
+        ></input>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input
+          type="text"
+          name="lastName"
+          onChange={updateLastName}
+          value={lastName}
         ></input>
       </div>
       <div>
