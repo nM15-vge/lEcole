@@ -1,1 +1,53 @@
-/* TODO Add site wide styles */
+/* Global Styles */
+:root {
+    --AZURE: #f0ffffff;
+    --GREY_TEXT: #a8a7a7;
+    --LIGHT_BLUE: #b7dcff;
+    --LIGHT_SALMON: #fdcebc;
+    --WHITE: #ffffff;
+    --BLUE_BUTTON: #64c0f8;
+    --GREY_INPUT: #97a5b3;
+}
+form {
+    width: 400px;
+    background-color: var(--WHITE);
+    color: var(--GREY_TEXT);
+    text-align: left;
+    font-size: 13px;
+    padding: 45px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 15px 1px var(--LIGHT_BLUE);
+}
+
+form button {
+    background-color: var(--LIGHT_SALMON);
+    border: 1px solid var(--LIGHT_SALMON);
+    border-radius: 5px;
+    color: var(--WHITE);
+    width: 100%;
+    padding: .75em 1em;
+    margin-top: 30px;
+    transition: background-color 400ms, border 400ms, color 400ms;
+}
+
+form button:hover {
+    background-color: var(--BLUE_BUTTON);
+    border: 1px solid var(--BLUE_BUTTON);
+    color: var(--WHITE);
+}
+
+input {
+    border-radius: 10px;
+    border: 2px solid var(--GREY_INPUT);
+    display: block;
+    box-sizing: border-box;
+    background-color: var(--WHITE);
+    width: 100%;
+    margin: 10px 0px 30px 0px;
+    padding: 5px;
+    outline: 0;
+}
+
+input:focus {
+    border: 2px solid var(--BLUE_BUTTON)
+}
