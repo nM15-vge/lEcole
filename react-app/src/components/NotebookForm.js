@@ -28,9 +28,9 @@ const NotebookForm = () => {
                     value={name}
                 />
             </div>
-            <p>Status:</p>
+            <p className="form-text">Status:</p>
             <div>
-                <input
+                <input className="radio"
                     type="radio"
                     name="private"
                     value="true"
@@ -40,7 +40,7 @@ const NotebookForm = () => {
                 <label>Private</label>
             </div>
             <div>
-                <input
+                <input className="radio"
                     type="radio"
                     name="private"
                     value="false"

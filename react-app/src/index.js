@@ -4,13 +4,16 @@ import { Provider } from 'react-redux';
 import configureStore from './store';
 import './index.css';
 import App from './App';
+import { ModalProvider } from './context/Modal';
 
 const store = configureStore();
 
 const Root = () => {
   return (
     <Provider store={store}>
-      <App />
+      <ModalProvider>
+        <App />
+      </ModalProvider>
     </Provider>
   )
 };
