@@ -26,7 +26,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <NavBar /> */}
+      <NavBar />
       <Switch>
         <Route path="/login" exact={true}>
           <div className="size center-flex">

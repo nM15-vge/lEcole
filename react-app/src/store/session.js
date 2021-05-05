@@ -13,8 +13,7 @@ const removeUser = () => ({
 });
 
 export const authenticate = () => async(dispatch) => {
-    const res = await myFetch('/api/auth/',{
-    });
+    const res = await myFetch('/api/auth/');
     const data = await res.json();
     if(data.errors){
         return;
