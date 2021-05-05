@@ -22,17 +22,21 @@ function App() {
 
   if (!loaded) {
     return null;
-  }
+  };
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
       <Switch>
         <Route path="/login" exact={true}>
-          <LoginForm />
+          <div className="size center-flex">
+            <LoginForm />
+          </div>
         </Route>
         <Route path="/sign-up" exact={true}>
-          <SignUpForm />
+          <div className="size center-flex">
+            <SignUpForm />
+          </div>
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList/>

@@ -6,8 +6,7 @@ const myFetch = async(url, options={}) => {
     };
     const res = await window.fetch(url, options);
     if(res.status >= 400) throw res;
-    const data = await res.json()
-    return data
+    return res
 }
 
 export default myFetch

@@ -12,10 +12,18 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onLogin = async (e) => {
+  const onLogin = (e) => {
     e.preventDefault();
     const data = dispatch(login(email, password))
     if (data.errors){
+      setErrors(data.errors);
+    };
+  };
+
+  const demoLogin = e => {
+    e.preventDefault();
+    const data = dispatch(login('demo@aa.io', 'password'));
+    if(data.errors){
       setErrors(data.errors);
     };
   };
@@ -33,14 +41,14 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form id="login-form" onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
           <div>{error}</div>
         ))}
       </div>
       <div>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Email:</label>
         <input
           name="email"
           type="text"
@@ -50,7 +58,7 @@ const LoginForm = () => {
         />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password:</label>
         <input
           name="password"
           type="password"
@@ -58,7 +66,11 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
+        <button type="submit">Login:</button>
+        <button type="submit" onClick={demoLogin}>Demo User</button>
+        <div className="center-flex">
+          <p>Don't have an account? <a href="/sign-up">Sign up</a></p>
+        </div>
       </div>
     </form>
   );

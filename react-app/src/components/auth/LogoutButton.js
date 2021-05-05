@@ -4,8 +4,8 @@ import { logout } from "../../store/session";
 
 const LogoutButton = () => {
   const dispatch = useDispatch();
-  
-  const onLogout = async (e) => {
+
+  const onLogout = e => {
     dispatch(logout())
   };
 

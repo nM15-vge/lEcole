@@ -13,30 +13,40 @@ const removeUser = () => ({
 });
 
 export const authenticate = () => async(dispatch) => {
-    const data = await myFetch('/api/auth/',{
+    const res = await myFetch('/api/auth/',{
     });
+    const data = await res.json();
+    if(data.errors){
+        return;
+    };
     dispatch(setUser(data));
 };
 
 export const login = (email, password) => async (dispatch) => {
-    const data = await myFetch('/api/auth/login', {
+    const res = await myFetch('/api/auth/login', {
         method: 'POST',
         body: JSON.stringify({
             email,
             password
         })
     });
+    const data = await res.json();
+    if(data.errors){
+        return;
+    };
     dispatch(setUser(data));
 };
 
 export const logout = () => async (dispatch) => {
-    const data = await myFetch("/api/auth/logout");
-    console.log(data)
+    const res = await myFetch("/api/auth/logout");
+    if(!res.ok){
+        return;
+    };
     dispatch(removeUser());
 };
 
 export const signUp = (username, firstName, lastName, email, password) => async (dispatch)=> {
-    const data = await myFetch("/api/auth/signup", {
+    const res = await myFetch("/api/auth/signup", {
         method: "POST",
         body: JSON.stringify({
             username,
@@ -46,6 +56,10 @@ export const signUp = (username, firstName, lastName, email, password) => async 
             password,
         }),
     });
+    if(!res.ok){
+        return;
+    }
+    const data = await res.json()
     dispatch(setUser(data));
 };
 

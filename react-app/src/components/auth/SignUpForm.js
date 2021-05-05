@@ -14,11 +14,11 @@ const SignUpForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (password === confirmPassword) {
       dispatch(signUp(username, firstName, lastName, email, password));
     }
   };
@@ -35,8 +35,8 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
+  const updateConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
   };
 
   const updateFirstName = (e) => {
@@ -53,9 +53,9 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form id="signup-form" onSubmit={onSignUp}>
       <div>
-        <label>User Name</label>
+        <label>Username:</label>
         <input
           type="text"
           name="username"
@@ -64,7 +64,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>First Name</label>
+        <label>First Name:</label>
         <input
           type="text"
           name="firstName"
@@ -73,7 +73,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Last Name</label>
+        <label>Last Name:</label>
         <input
           type="text"
           name="lastName"
@@ -82,7 +82,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Email</label>
+        <label>Email:</label>
         <input
           type="text"
           name="email"
@@ -91,7 +91,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Password</label>
+        <label>Password:</label>
         <input
           type="password"
           name="password"
@@ -100,16 +100,19 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
+        <label>Confirm Password:</label>
         <input
           type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
+          name="confirm_password"
+          onChange={updateConfirmPassword}
+          value={confirmPassword}
           required={true}
         ></input>
       </div>
       <button type="submit">Sign Up</button>
+      <div className="center-flex">
+        <p>Already have an account? <a href="/login">Log in</a></p>
+      </div>
     </form>
   );
 };
