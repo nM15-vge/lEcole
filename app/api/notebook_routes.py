@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, session, request
+from flask_login import login_required
 from app.models import Notebook, db
 
 
@@ -17,6 +18,8 @@ def notebooks():
             user_id=session["_user_id"],
             private=body.get("private", False)
         )
+        db.session.add(new_notebook)
+        db.session.commit()
         return {new_notebook.id: new_notebook.to_dict()}
     return {notebook.id: notebook.to_dict() for notebook in notebooks}
 

@@ -8,6 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { useDispatch } from "react-redux";
 import { authenticate } from "./store/session";
+import NotebookForm from "./components/NotebookForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
+        </ProtectedRoute>
+        <ProtectedRoute path="/new_notebook" exact={true}>
+          <NotebookForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

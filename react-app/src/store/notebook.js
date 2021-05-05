@@ -46,10 +46,10 @@ export const deleteNotebook = (notebookId) => async dispatch => {
     dispatch(removeNotebook(data));
 };
 
-export const postNotebook = (name, private) => async dispatch => {
+export const postNotebook = (name, publish) => async dispatch => {
     const res = await myFetch(`/api/notebooks/`, {
         method: "POST",
-        body: JSON.stringify({name, private})
+        body: JSON.stringify({name, private: publish})
     });
     const data = await res.json();
     if(!res.ok){
@@ -58,10 +58,10 @@ export const postNotebook = (name, private) => async dispatch => {
     dispatch(getNotebook(data));
 };
 
-export const updateNotebook = (name, private, notebookId) => async dispatch => {
+export const updateNotebook = (name, publish, notebookId) => async dispatch => {
     const res = await myFetch(`/api/notebooks/${notebookId}`, {
         method: "PUT",
-        body: JSON.stringify({name, private})
+        body: JSON.stringify({name, private: publish})
     });
     const data = res.json();
     if(!res.ok){
