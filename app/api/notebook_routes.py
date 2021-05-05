@@ -17,8 +17,8 @@ def notebooks():
             user_id=session["_user_id"],
             private=body.get("private", False)
         )
-        return new_notebook.to_dict()
-    return {"notebooks": [notebook.to_dict() for notebook in notebooks]}
+        return {new_notebook.id: new_notebook.to_dict()}
+    return {notebook.id: notebook.to_dict() for notebook in notebooks}
 
 
 @notebook_routes.route("/<int:notebookId>", methods=["GET", "PUT", "DELETE"])
@@ -26,13 +26,14 @@ def notebooks():
 def update_notebook(notebookId):
     notebook = Notebook.query.get(notebookId)
     if request.method == "GET":
-        return notebook.to_dict() if notebook else {"Notebook": "null"}
+        return ({notebook.id: notebook.to_dict()}
+                if notebook else {"Notebook": "null"})
     elif request.method == "PUT":
         body = request.get_json()
         notebook.name = request.get_json("name", notebook.name)
         notebook.private = request.get_json("private", notebook.private)
         db.session.commit()
-        return notebook.to_dict()
+        return {notebook.id: notebook.to_dict()}
     elif request.method == "DELETE":
         db.session.delete(notebook)
         db.session.commit()

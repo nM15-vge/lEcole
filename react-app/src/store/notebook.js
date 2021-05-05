@@ -36,3 +36,61 @@ export const notebooks = () => async dispatch => {
     };
     dispatch(setNotebooks(data));
 };
+
+export const deleteNotebook = (notebookId) => async dispatch => {
+    const res = await myFetch(`/api/notebooks/${notebookId}`);
+    const data = await res.json();
+    if(!res.ok){
+        return;
+    };
+    dispatch(removeNotebook(data));
+};
+
+export const postNotebook = (name, private) => async dispatch => {
+    const res = await myFetch(`/api/notebooks/`, {
+        method: "POST",
+        body: JSON.stringify({name, private})
+    });
+    const data = await res.json();
+    if(!res.ok){
+        return;
+    };
+    dispatch(getNotebook(data));
+};
+
+export const updateNotebook = (name, private, notebookId) => async dispatch => {
+    const res = await myFetch(`/api/notebooks/${notebookId}`, {
+        method: "PUT",
+        body: JSON.stringify({name, private})
+    });
+    const data = res.json();
+    if(!res.ok){
+        return;
+    };
+    dispatch(getNotebook(data));
+};
+
+const initialState = {notebooks: null}
+
+const notebookReducer = (state=initialState, action) => {
+    switch(action.type){
+        case SET_NOTEBOOKS:
+            return {...state, notebooks: action.notebooks};
+        case GET_NOTEBOOK:
+            const updatedNotebooks = {...state.notebooks};
+            for (const key in action.notebook){
+                updateNotebook[key] = action.notebook[key]
+            };
+            return {...state, notebooks: updatedNotebooks};
+        case REMOVE_NOTEBOOK:
+            const editNotebooks = {...state.notebooks};
+            for (const key in action.notebook){
+                delete editNotebooks[key]
+            };
+            return {...state, notebooks: editNotebooks};
+        default:
+            return state;
+    };
+};
+
+export default notebookReducer;
