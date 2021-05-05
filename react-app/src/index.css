@@ -114,3 +114,36 @@ a:hover {
     justify-content: center;
     align-items: center;
 }
+
+/* Dropdown */
+.profileIcon {
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+}
+
+/* Modal Design */
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: transparent;
+  }
+
+  .modal-content {
+    position: fixed;
+    background-color: transparent;
+  }

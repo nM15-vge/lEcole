@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(100))
     last_name = db.Column(db.String(100))
     email = db.Column(db.String(255), nullable=False, unique=True)
+    avatar_url = db.Column(db.String(256))
     hashed_password = db.Column(db.String(255), nullable=False)
 
     notebooks = db.relationship("Notebook", back_populates="user")
@@ -34,5 +35,6 @@ class User(db.Model, UserMixin):
           "username": self.username,
           "email": self.email,
           "lastName": self.last_name,
-          "firstName": self.first_name
+          "firstName": self.first_name,
+          "avatarUrl": self.avatar_url
         }

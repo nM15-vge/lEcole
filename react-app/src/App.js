@@ -9,6 +9,7 @@ import User from "./components/User";
 import { useDispatch } from "react-redux";
 import { authenticate } from "./store/session";
 import NotebookForm from "./components/NotebookForm";
+import ModalTesting from "./components/ModalTesting";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/new_notebook" exact={true}>
           <NotebookForm />
+        </ProtectedRoute>
+        <ProtectedRoute path="/modal-testing" exact={true}>
+          <ModalTesting />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
