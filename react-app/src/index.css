@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave&family=Sedgwick+Ave+Display&display=swap');
 /* Global Styles */
 :root {
     --AZURE: #f0ffffff;
@@ -12,6 +13,11 @@
     --EMERALD: #1a6b1a;
 }
 
+* {
+  /* font-family: 'Sedgwick Ave', cursive; */
+  font-family: 'Sedgwick Ave Display', cursive;
+}
+
 /* Forms */
 form {
     width: 400px;
@@ -22,13 +28,14 @@ form {
     padding: 45px;
     border-radius: 15px;
     box-shadow: 1px 1px 5px 1px var(--LIGHT_BLUE);
+    font-family: 'Sedgwick Ave Display', cursive;
 }
 
 form button {
     background-color: var(--LIGHT_SALMON);
     border: 1px solid var(--LIGHT_SALMON);
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 20px;
     color: var(--WHITE);
     width: 100%;
     padding: .75em 1em;
@@ -66,7 +73,8 @@ input:focus {
 }
 
 .form-text {
-    font-size: 20px;
+    font-size: 25px;
+    font-family: 'Sedgwick Ave Display', cursive;
 }
 
 #login-form {
@@ -78,12 +86,12 @@ input:focus {
 }
 
 #logout {
-    position: relative;
+    position: absolute;
     width: 100px;
     height: 30px;
     border: 1px solid var(--GREY_INPUT);
-    bottom: -40px;
-    right: 60px;
+    right: 20px;
+    top: 50px;
 }
 
 /* Text */
@@ -96,6 +104,7 @@ a {
     text-decoration: none;
     color: var(--NIGHT_SKY);
     transition: color 500ms;
+    font-size: 25px;
 }
 
 a:hover {
@@ -177,15 +186,15 @@ a:hover {
 
 
 /* Cube */
-.pers650 {
+/* .pers650 {
     perspective: 800px;
-  }
+  } */
 
   /* Define the container div, the cube div, and a generic face */
-  .container {
+  /* .container {
     width: 100%;
     height: 100%;
-    /* margin: 75px 0 0 75px; */
+    margin: 75px 0 0 75px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -211,13 +220,13 @@ a:hover {
     font-size: 60px;
     color: white;
     text-align: center;
-  }
+  } */
   /* .front {
     background: rgba(0, 0, 0, 0.3);
     transform: translateZ(50px);
   } */
 
-  .back {
+  /* .back {
     background: rgba(0, 255, 0, 1);
     color: black;
     transform: rotateY(180deg) translateZ(0px);
@@ -244,4 +253,4 @@ a:hover {
   .bottom {
     background: rgba(196, 0, 196, 0.7);
     transform: rotateX(-90deg) translateZ(50px);
-  }
+  } */

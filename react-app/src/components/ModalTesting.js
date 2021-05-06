@@ -14,7 +14,7 @@ const ModalTesting = () => {
             <Link onClick={onClick} to="/new-project">Modal Testing</Link>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <NotebookForm />
+                    <NotebookForm onClose={() => setShowModal(false)}/>
                 </Modal>
             )}
 

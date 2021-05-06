@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postNotebook } from "../store/notebook";
 
-const NotebookForm = () => {
+const NotebookForm = ({onClose}) => {
     const dispatch = useDispatch();
 
     const [name, setName] = useState("");
@@ -15,6 +15,7 @@ const NotebookForm = () => {
             setErrors(["A notebook should have a name."])
         }else if(errors.length === 0){
             dispatch(postNotebook(name, privatePublic));
+            onClose()
         };
     };
     return(

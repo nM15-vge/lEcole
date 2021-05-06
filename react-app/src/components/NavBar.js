@@ -25,24 +25,26 @@ const NavBar = () => {
   }, [showMenu]);
 
   return (
-    <nav className="nav-container">
-        <div className="nav-div center-flex">
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-        </div>
-        <div className="nav-div center-flex">
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </div>
-        <div className="nav-div center-flex">
-          <div onClick={openMenu}>
-            <img className="profileIcon" src={user?.avatarUrl}/>
-          </div>
-          {showMenu && <LogoutButton />}
-        </div>
-    </nav>
+      <>
+        {user && (<nav className="nav-container">
+            <div className="nav-div center-flex">
+              <NavLink to="/" exact={true} activeClassName="active">
+                Home
+              </NavLink>
+            </div>
+            <div className="nav-div center-flex">
+              <NavLink to="/users" exact={true} activeClassName="active">
+                Users
+              </NavLink>
+            </div>
+            <div className="nav-div center-flex">
+              <div className="center-flex" onClick={openMenu}>
+                <img className="profileIcon" alt="avatar" src={user?.avatarUrl}/>
+              </div>
+              {showMenu && <LogoutButton />}
+            </div>
+        </nav>)}
+      </>
   );
 }
 

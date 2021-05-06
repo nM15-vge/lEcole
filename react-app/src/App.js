@@ -8,9 +8,8 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { useDispatch } from "react-redux";
 import { authenticate } from "./store/session";
-import NotebookForm from "./components/NotebookForm";
 import ModalTesting from "./components/ModalTesting";
-import HomePage from "./components/HomePage";
+// import HomePage from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <NavBar /> */}
+      <NavBar />
       <Switch>
         <Route path="/login" exact={true}>
           <div className="size center-flex">
@@ -48,9 +47,9 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <HomePage />
-          {/* <h1>My Home Page</h1> */}
-          {/* <ModalTesting /> */}
+          {/* <HomePage /> */}
+          <h1>My Home Page</h1>
+          <ModalTesting />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
