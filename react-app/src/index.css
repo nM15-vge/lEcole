@@ -79,12 +79,27 @@ input:focus {
 }
 
 #login-form {
-    height: 50%;
+    height: 55%;
 }
 
 #signup-form {
-    height: 87%;
+    height: 45%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
+
+#signup-form input {
+  width: 300px;
+}
+
+#signup-form > button, p {
+  width: 300px;
+}
+
 
 #logout {
     position: absolute;

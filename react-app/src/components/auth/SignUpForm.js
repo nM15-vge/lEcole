@@ -109,9 +109,9 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type="submit">Sign Up</button>
-      <div className="center-flex">
-        <p>Already have an account? <a href="/login">Log in</a></p>
+      <button className="center-flex" type="submit">Sign Up</button>
+      <div>
+        <p className="center-flex" >Already have an account? <a href="/login">Log in</a></p>
       </div>
     </form>
   );
