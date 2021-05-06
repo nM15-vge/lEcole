@@ -9,7 +9,7 @@ import User from "./components/User";
 import { useDispatch } from "react-redux";
 import { authenticate } from "./store/session";
 import ModalTesting from "./components/ModalTesting";
-// import HomePage from "./components/HomePage";
+// import HomePage2 from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          {/* <HomePage /> */}
+          {/* <HomePage2 /> */}
           <h1>My Home Page</h1>
           <ModalTesting />
         </ProtectedRoute>
