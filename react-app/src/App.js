@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { authenticate } from "./store/session";
 import NotebookForm from "./components/NotebookForm";
 import ModalTesting from "./components/ModalTesting";
+import HomePage from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
       <Switch>
         <Route path="/login" exact={true}>
           <div className="size center-flex">
@@ -47,13 +48,9 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
-        <ProtectedRoute path="/new_notebook" exact={true}>
-          <NotebookForm />
-        </ProtectedRoute>
-        <ProtectedRoute path="/modal-testing" exact={true}>
-          <ModalTesting />
+          <HomePage />
+          {/* <h1>My Home Page</h1> */}
+          {/* <ModalTesting /> */}
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

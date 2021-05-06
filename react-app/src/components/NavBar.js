@@ -25,27 +25,22 @@ const NavBar = () => {
   }, [showMenu]);
 
   return (
-    <nav>
-        <div>
+    <nav className="nav-container">
+        <div className="nav-div center-flex">
           <NavLink to="/" exact={true} activeClassName="active">
             Home
           </NavLink>
         </div>
-        <div>
+        <div className="nav-div center-flex">
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
         </div>
-        <div>
+        <div className="nav-div center-flex">
           <div onClick={openMenu}>
             <img className="profileIcon" src={user?.avatarUrl}/>
           </div>
           {showMenu && <LogoutButton />}
-        </div>
-        <div>
-          <NavLink to="modal-testing" exact={true}>
-            Modal Testing
-          </NavLink>
         </div>
     </nav>
   );

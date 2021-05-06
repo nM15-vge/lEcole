@@ -77,6 +77,15 @@ input:focus {
     height: 87%;
 }
 
+#logout {
+    position: relative;
+    width: 100px;
+    height: 30px;
+    border: 1px solid var(--GREY_INPUT);
+    bottom: -40px;
+    right: 60px;
+}
+
 /* Text */
 p {
     font-size: 15px;
@@ -93,33 +102,29 @@ a:hover {
     color: var(--EMERALD)
 }
 
-/* Miscellanous */
-#root, html, body {
-    margin: 0;
-    height: 100%;
-    border: 0;
-    padding: 0;
-    background-color: #EBF3F3
-}
-
-.size {
-    width: 100%;
-    height: 100%;
-    max-width: 100vw;
-    max-height: 100vh;
-}
-
-.center-flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /* Dropdown */
 .profileIcon {
-    width: 30px;
-    height: 30px;
-    border-radius: 100px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* position: relative; */
+}
+
+/* Navbar */
+.nav-div {
+    display: inline-block;
+    padding: 4px 10px 0px 10px;
+    height: 100%;
+    width: 100px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: var(--BLUE_BUTTON);
 }
 
 /* Modal Design */
@@ -146,4 +151,97 @@ a:hover {
   .modal-content {
     position: fixed;
     background-color: transparent;
+  }
+
+/* Miscellanous */
+#root, html, body {
+    margin: 0;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    background-color: #EBF3F3
+}
+
+.size {
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+.center-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Cube */
+.pers650 {
+    perspective: 800px;
+  }
+
+  /* Define the container div, the cube div, and a generic face */
+  .container {
+    width: 100%;
+    height: 100%;
+    /* margin: 75px 0 0 75px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+  }
+  .cube {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    perspective-origin: 150% 150%;
+    transform-style: preserve-3d;
+  }
+
+  .face {
+    display: block;
+    position: absolute;
+    border: none;
+    line-height: 100px;
+    font-family: sans-serif;
+    font-size: 60px;
+    color: white;
+    text-align: center;
+  }
+  /* .front {
+    background: rgba(0, 0, 0, 0.3);
+    transform: translateZ(50px);
+  } */
+
+  .back {
+    background: rgba(0, 255, 0, 1);
+    color: black;
+    transform: rotateY(180deg) translateZ(0px);
+    width: 90%;
+    height: 90%;
+  }
+
+  .right {
+    background: rgba(196, 0, 0, 0.7);
+    transform: rotateY(110deg) translateZ(490px);
+    width: 40%;
+    height: 40%;
+  }
+
+  .left {
+    background: rgba(0, 0, 196, 0.7);
+    transform: rotateY(-90deg) translateZ(50px);
+  }
+
+  .top {
+    background: rgba(196, 196, 0, 0.7);
+    transform: rotateX(90deg) translateZ(50px);
+  }
+  .bottom {
+    background: rgba(196, 0, 196, 0.7);
+    transform: rotateX(-90deg) translateZ(50px);
   }
