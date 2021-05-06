@@ -9,6 +9,7 @@ import User from "./components/User";
 import { useDispatch } from "react-redux";
 import { authenticate } from "./store/session";
 import ModalTesting from "./components/ModalTesting";
+import HomePage from "./components/HomePage";
 // import HomePage2 from "./components/HomePage";
 
 function App() {
@@ -48,8 +49,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           {/* <HomePage2 /> */}
-          <h1>My Home Page</h1>
-          <ModalTesting />
+          <HomePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
