@@ -68,8 +68,8 @@ const LoginForm = () => {
         />
         <button type="submit">Login:</button>
         <button type="submit" onClick={demoLogin}>Demo User</button>
-        <div className="center-flex">
-          <p>Don't have an account? <a href="/sign-up">Sign up</a></p>
+        <div>
+          <p className="center-flex" >Don't have an account? <a href="/sign-up">Sign up</a></p>
         </div>
       </div>
     </form>

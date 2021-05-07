@@ -3,8 +3,14 @@ import ModalTesting from "./ModalTesting";
 
 const HomePage = () => {
     return (
-        <div>
-            <ModalTesting />
+        <div className="homepage">
+            <div className="sidebar">
+                <ModalTesting />
+            </div>
+            <div className="main">
+                <div className="header">Hello</div>
+                <div className="notes">Bye</div>
+            </div>
         </div>
     )
 };

@@ -8,7 +8,6 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { useDispatch } from "react-redux";
 import { authenticate } from "./store/session";
-import ModalTesting from "./components/ModalTesting";
 import HomePage from "./components/HomePage";
 // import HomePage2 from "./components/HomePage";
 

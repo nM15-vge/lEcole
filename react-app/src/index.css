@@ -19,6 +19,51 @@
   font-family: 'Sedgwick Ave Display', cursive;
 }
 
+/* HomePage */
+
+.homepage {
+  display: grid;
+  grid-template-areas:
+  "sidebar main";
+
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  border: 1px solid black;
+  height: 78vh;
+  width: 76vw;
+  position: relative;
+  left: 12%;
+  bottom: -8%;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  border: 1px solid black;
+}
+
+.main {
+  grid-area: main;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  grid-template-columns: 1fr;
+
+  grid-template-areas:
+  'header'
+  'notes';
+
+  border: 1px solid black;
+}
+
+.header {
+  grid-area: header;
+  border: 1px solid black;
+}
+
+.notes {
+  grid-area: notes;
+  border: 1px solid black;
+}
+
 /* Forms */
 form {
     width: 400px;
@@ -62,6 +107,7 @@ input {
     padding: 5px;
     outline: 0;
 }
+
 
 input:focus {
     border: 2px solid var(--BLUE_BUTTON)
@@ -116,6 +162,10 @@ input:focus {
 /* Text */
 p {
     font-size: 15px;
+}
+
+p > a {
+  font-size: 15px;
 }
 
 /* Links */
