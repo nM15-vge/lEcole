@@ -72,7 +72,7 @@ export const updateNotebook = (name, publish, notebookId) => async dispatch => {
     dispatch(getNotebook(data));
 };
 
-const initialState = {notebooks: null}
+const initialState = {notebooks: null};
 
 const notebookReducer = (state=initialState, action) => {
     switch(action.type){
@@ -81,13 +81,13 @@ const notebookReducer = (state=initialState, action) => {
         case GET_NOTEBOOK:
             const updatedNotebooks = {...state.notebooks};
             for (const key in action.notebook){
-                updatedNotebooks[key] = action.notebook[key]
+                updatedNotebooks[key] = action.notebook[key];
             };
             return {...state, notebooks: updatedNotebooks};
         case REMOVE_NOTEBOOK:
             const editNotebooks = {...state.notebooks};
             for (const key in action.notebook){
-                delete editNotebooks[key]
+                delete editNotebooks[key];
             };
             return {...state, notebooks: editNotebooks};
         default:
