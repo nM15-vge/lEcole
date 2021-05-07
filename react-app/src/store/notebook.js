@@ -38,7 +38,9 @@ export const notebooks = () => async dispatch => {
 };
 
 export const deleteNotebook = (notebookId) => async dispatch => {
-    const res = await myFetch(`/api/notebooks/${notebookId}`);
+    const res = await myFetch(`/api/notebooks/${notebookId}`, {
+        method: "DELETE"
+    });
     const data = await res.json();
     if(!res.ok){
         return;

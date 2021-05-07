@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
-from app.models import Notebook, db
+from app.models import Notebook, Note, db
 
 
 notebook_routes = Blueprint("notebooks", __name__)
@@ -21,7 +21,8 @@ def notebooks():
         db.session.add(new_notebook)
         db.session.commit()
         return {new_notebook.id: new_notebook.to_dict()}
-    return {notebook.id: notebook.to_dict() for notebook in notebooks}
+    return ({notebook.id: notebook.to_dict() for notebook in notebooks}
+            if notebooks else {"notebooks": "null"})
 
 
 @notebook_routes.route("/<int:notebookId>", methods=["GET", "PUT", "DELETE"])
@@ -30,7 +31,7 @@ def update_notebook(notebookId):
     notebook = Notebook.query.get(notebookId)
     if request.method == "GET":
         return ({notebook.id: notebook.to_dict()}
-                if notebook else {"Notebook": "null"})
+                if notebook else {"notebook": "null"})
     elif request.method == "PUT":
         body = request.get_json()
         notebook.name = request.get_json("name", notebook.name)
@@ -40,5 +41,14 @@ def update_notebook(notebookId):
     elif request.method == "DELETE":
         db.session.delete(notebook)
         db.session.commit()
+        return {notebook.id: notebook.to_dict()}
     else:
-        return {"Notebook": "null"}
+        return {"notebook": "null"}
+
+
+@notebook_routes.route("/<int:notebookId>/notes")
+@login_required
+def notebookNotes(notebookId):
+    notes = Notes.query.filter(Note.notebook_id == notebookId).all()
+    return ({note.id: note.to_dict() for note in notes}
+            if notes else {"notes": "null"})

@@ -29,11 +29,11 @@
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr;
   border: 1px solid black;
-  height: 78vh;
+  height: 76vh;
   width: 76vw;
   position: relative;
   left: 12%;
-  bottom: -8%;
+  bottom: -9%;
 }
 
 .sidebar {
