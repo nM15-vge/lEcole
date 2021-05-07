@@ -28,7 +28,7 @@ export const note = (noteId) => async dispatch => {
     dispatch(getNote(data));
 };
 
-export const notes = () => async dispatch => {
+export const notes = (notebookId) => async dispatch => {
     const res = await myFetch(`/api/notebooks/${notebookId}/notes`);
     const data = await res.json();
     if(!res.ok){
