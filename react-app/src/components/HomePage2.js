@@ -2,13 +2,13 @@ import React from "react";
 
 const HomePage2 = () => {
     return (
-        <div class="container">
-            <div class="cube pers650">
-                <div class="face back">2</div>
-                <div class="face right">3</div>
-                {/* <div class="face left">4</div>
-                <div class="face top">5</div>
-                <div class="face bottom">6</div> */}
+        <div className="container">
+            <div className="cube pers650 center-flex">
+                <div className="right">R</div>
+                <div className="back">Ba</div>
+                <div className="left">L</div>
+                {/* <div className="face top">T</div> */}
+                <div className="face bottom">Bo</div>
             </div>
         </div>
     )
