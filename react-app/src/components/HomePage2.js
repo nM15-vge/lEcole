@@ -7,7 +7,7 @@ const HomePage2 = () => {
             <div className="cube pers650 center-flex">
                 <div className="right"></div>
                 <div className="left posBookshelfY"><img className="notebook" src={Notebook}/></div>
-                <div className="left posBookshelfX"></div>
+                <div className="left posBookshelfX"><img src={Notebook} style={{"height": '50px', "width": '100px'}}/></div>
                 <div className="face bottom"></div>
             </div>
             {/* <div id="floor"></div> */}
