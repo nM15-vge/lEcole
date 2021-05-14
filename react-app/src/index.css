@@ -244,31 +244,13 @@ a:hover {
     display: flex;
     justify-content: center;
     align-content: flex-end;
-    /* background:  no-repeat center/87% url("./assets/Scroll.svg"),
-    linear-gradient( 310deg, var(--BACKGROUND) 40%, var(--BACKGROUND1) 20%, var(--BACKGROUND2) 20%, var(--BACKGROUND3)); */
-    /* background: no-repeat center/cover url("./assets/BrickWall.svg"); */
     background: no-repeat center/100% url("https://c2.staticflickr.com/8/7591/16554788810_6e4e3c6a4f_b.jpg")
-}
-
-/* body {
-  perspective: 100px;
-} */
-
-#loginPage {
-  width: 100%;
-  height: 25%;
-  background: linear-gradient(10deg, var(--WHITE), var(--DARK_GRAY));
-  transform: rotateX(10deg);
-  position: relative;
-  bottom: -6%;
 }
 
 #form-container {
   width: 100%;
-  height: 70%;
-  background-color: var(--BLUE_BUTTON);
+  height: 90%;
   transform: rotateX(0deg);
-  z-index: -1;
 }
 
 .size {
@@ -285,53 +267,25 @@ a:hover {
 }
 
 
-/* Cube */
-.pers650 {
-  perspective: 400px;
-}
+/* Floor Plan */
 
-/* Define the container div, the cube div, and a generic face */
 .container {
   width: 100%;
   height: 100%;
   border: none;
 }
-.cube {
+.floorPlan {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
   perspective-origin: 150% 150%;
   transform-style: flat;
+  perspective: 400px;
 }
 
-
-.face {
-  display: block;
-  width: 50%;
-  height: 45%;
-  border: none;
-  line-height: 100px;
-  font-size: 60px;
-  color: white;
-  text-align: center;
-}
-
-.back {
-  width: 37.5%;
-  height: 74%;
-  border: none;
-  line-height: 100px;
-  font-size: 60px;
-  color: white;
-  text-align: center;
-  background: rgba(0, 255, 0, 1);
-  color: black;
-  transform: rotateY(0deg);
-}
-
-.right {
+.coffeeTable {
   width: 60%;
-  height: 50%;
+  height: 45%;
   border: none;
   position: relative;
   bottom: -29%;
@@ -341,7 +295,7 @@ a:hover {
   z-index: 100;
 }
 
-.left {
+.bookshelf {
   width: 15%;
   height: 48%;
   border: none;
@@ -350,23 +304,22 @@ a:hover {
   transform: rotateX(0.15deg) rotateY(0deg) rotateZ(0deg);
 }
 
-.posBookshelfX {
+.posX {
   position: relative;
   left: -55%;
   top: -8%;
 }
 
-.posBookshelfY {
+.posY {
   position: relative;
   left: -25%;
   top: -8%;
 }
 
-.top {
-  background: rgba(196, 196, 0, 0.7);
-  transform: rotateX(90deg);
-}
-.bottom {
+.carpet {
+  width: 50%;
+  height: 45%;
+  border: none;
   transform: rotateX(17deg) rotateY(3deg) rotateZ(4deg);
   position: absolute;
   bottom: -5%;
@@ -376,7 +329,10 @@ a:hover {
 }
 
 .notebook {
-  width: 400px;
-  height: 400px;
-  transform: rotateY(10deg);
+  width: 100px;
+  height: 100px;
+  transform: rotateY(60deg);
+  position: absolute;
+  top: 9%;
+  left: -10%;
 }

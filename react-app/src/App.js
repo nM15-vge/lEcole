@@ -29,7 +29,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
       <Switch>
         <Route path="/test" exact={true}>
           <HomePage2 />
@@ -38,7 +37,6 @@ function App() {
           <div id="form-container" className="size center-flex">
             <LoginForm />
           </div>
-          <div id="loginPage"></div>
         </Route>
         <Route path="/sign-up" exact={true}>
           <div className="size center-flex">
