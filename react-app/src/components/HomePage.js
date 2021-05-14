@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteNotebook, notebooks } from "../store/notebook";
 
@@ -12,9 +13,6 @@ const HomePage = () => {
         dispatch(notebooks())
     }, [dispatch]);
 
-    const onClick = e => {
-        dispatch(deleteNotebook(e.target.id));
-    };
 
     let top = 9;
     let left = -14;
@@ -36,7 +34,11 @@ const HomePage = () => {
                     {userNotebooks && Object.keys(userNotebooks).map(id => {
                         left = -14;
                         updateLeft();
-                        return <img id={id} className="notebook" key={id} onClick={onClick} title={userNotebooks[id].name} src={Notebook} style={{"top": `${top}$`, "left": `${left}%`}}/>
+                        return (
+                        <Link to={`/notebooks/${id}`}>
+                            <img id={id} className="notebook" key={id} title={userNotebooks[id].name} src={Notebook} style={{"top": `${top}%`, "left": `${left}%`}}/>
+                        </Link>
+                        )
                     })}
                 </div>
                 <div className="bookshelf posX"><img className="notebook" src={Notebook}/></div>
