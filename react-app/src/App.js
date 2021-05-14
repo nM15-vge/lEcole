@@ -9,8 +9,6 @@ import User from "./components/User";
 import { useDispatch } from "react-redux";
 import { authenticate } from "./store/session";
 import HomePage from "./components/HomePage";
-import HomePage2 from "./components/HomePage2";
-// import HomePage2 from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,9 +28,6 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/test" exact={true}>
-          <HomePage2 />
-        </Route>
         <Route path="/login" exact={true}>
           <div id="form-container" className="size center-flex">
             <LoginForm />
@@ -50,7 +45,6 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          {/* <HomePage2 /> */}
           <HomePage />
         </ProtectedRoute>
       </Switch>
