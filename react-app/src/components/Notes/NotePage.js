@@ -24,17 +24,31 @@ const NotePage = () => {
 
     const onSubmit = e => {
         if(e.keyCode === 13){
-            if(!name.length || !content.length){
+            if(!name.length){
                 setDisplayed(false);
-                setContentDisplay(false);
                 return;
             }else {
-              dispatch(updateNote(noteId, name? name: notes[noteId].name , content? content: notes[noteId].content))
+              const x = name.length? name: notes[noteId].name
+              const y = content.length? content: notes[noteId].content
+              dispatch(updateNote(noteId, x, y));
               setDisplayed(false);
-              setContentDisplay(false);
             };
         };
     };
+
+    const onSubmit2 = e => {
+        if(e.keyCode === 13){
+            if(!content.length){
+                setContentDisplay(false);
+                return;
+            }else {
+              const x = name.length? name: notes[noteId].name
+              const y = content.length? content: notes[noteId].content
+              dispatch(updateNote(noteId, x, y));
+              setContentDisplay(false);
+            };
+        };
+    }
 
     useEffect(() => {
         dispatch(note(noteId));
@@ -62,7 +76,7 @@ const NotePage = () => {
                     </div>)}
                     {contentDisplay && (<input
                         id="contentInput"
-                        onKeyDown={onSubmit}
+                        onKeyDown={onSubmit2}
                         type="text"
                         name="content"
                         onChange={e => setContent(e.target.value)}
