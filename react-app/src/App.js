@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/session";
 import HomePage from "./components/HomePage";
 import NotePage from "./components/Notes/NotePage";
+import NotebookIndex from "./components/NotebookIndex";
+import NavBar from "./components/NavBar";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
-
+  const user = useSelector(state => state.session.user)
   if (!loaded) {
     return null;
   };
@@ -45,6 +44,18 @@ function App() {
         <ProtectedRoute path="/notes/:noteId" exact={true}>
           <NotePage />
         </ProtectedRoute>
+        <ProtectedRoute path="/notebooks/:notebookId" exact={true}>
+          <NotebookIndex />
+        </ProtectedRoute>
+        <ProtectedRoute path="/notebooks/:notebookId/notes/:noteId" exact={true}>
+          <NotePage />
+        </ProtectedRoute>
+        <Route>
+          <div>
+            {user && <NavBar />}
+            <div>Page Not Found</div>
+          </div>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

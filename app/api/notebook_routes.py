@@ -49,6 +49,6 @@ def update_notebook(notebookId):
 @notebook_routes.route("/<int:notebookId>/notes")
 @login_required
 def notebookNotes(notebookId):
-    notes = Notes.query.filter(Note.notebook_id == notebookId).all()
+    notes = Note.query.filter(Note.notebook_id == notebookId).all()
     return ({note.id: note.to_dict() for note in notes}
             if notes else {"notes": "null"})

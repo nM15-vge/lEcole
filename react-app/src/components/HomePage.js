@@ -5,6 +5,7 @@ import { deleteNotebook, notebooks } from "../store/notebook";
 import NotebookForm from "./NotebookForm";
 import Modal from "../context/Modal";
 import { commonNotes, postNote } from "../store/note";
+import LogoutButton from "./auth/LogoutButton";
 
 const HomePage = () => {
     const Notebook = require('../assets/Notebook.svg');
@@ -14,9 +15,28 @@ const HomePage = () => {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
+    const [showMenu, setShowMenu] = useState(false);
+
+    const openMenu = e => {
+        e.preventDefault();
+        if(showMenu) return;
+        setShowMenu(true);
+    };
+
+    useEffect(() => {
+        if(!showMenu) return;
+        const closeMenu = e => {
+          e.preventDefault();
+          setShowMenu(false);
+        };
+        document.addEventListener("click", closeMenu);
+        return () => document.removeEventListener("click", closeMenu);
+      }, [showMenu]);
+
 
     const userNotebooks = useSelector(state => state.notebooks.notebooks);
-    const notebooKIdNotes = useSelector(state => state.notes.commonNotes)
+    const notebooKIdNotes = useSelector(state => state.notes.commonNotes);
+    const user = useSelector(state => state.session.user);
 
     const onClick = e => {
         e.preventDefault();
@@ -26,7 +46,6 @@ const HomePage = () => {
     const createNote =  async () => {
         const newNote = await dispatch(postNote("Untitled Note"));
         for (const key in newNote){
-            console.log(key)
             history.push(`/notes/${key}`)
         };
     };
@@ -65,6 +84,12 @@ const HomePage = () => {
                         </Modal>
                     )}
                     <div onClick={createNote} id="newNote" className="center-flex">Create Note</div>
+                    <div>
+                        <div onClick={openMenu}>
+                            <img id="avatar" alt="avatar" src={user?.avatarUrl}/>
+                        </div>
+                        {showMenu && <LogoutButton />}
+                    </div>
                 </div>
                 <div className="bookshelf posY">
                     {staticNotebooks.map((val, idx) => {
