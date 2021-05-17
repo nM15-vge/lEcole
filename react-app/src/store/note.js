@@ -3,21 +3,27 @@ import myFetch from "./fetch";
 const SET_NOTES = "notes/SET_NOTES";
 const GET_NOTE = "notes/GET_NOTE";
 const REMOVE_NOTE = "notes/REMOVE_NOTE";
+const ALL_NOTES = "notes/ALL_NOTES"
 
-export const setNotes = (notes) => ({
+const setNotes = (notes) => ({
     type: SET_NOTES,
     notes
 });
 
-export const getNote = (note) => ({
+const getNote = (note) => ({
     type: GET_NOTE,
     note
 });
 
-export const removeNote = (note) => ({
+const removeNote = (note) => ({
     type: REMOVE_NOTE,
     note
 });
+
+const allNotes = (notes) => ({
+    type: ALL_NOTES,
+    notes
+})
 
 export const note = (noteId) => async dispatch => {
     const res = await myFetch(`/api/notes/${noteId}`);
@@ -47,6 +53,7 @@ export const postNote = (name, content, notebookId, publish, notesUrl) => async 
         return;
     };
     dispatch(getNote(data));
+    return data;
 };
 
 export const deleteNote = (noteId) => async dispatch => {
@@ -72,7 +79,16 @@ export const updateNote = (noteId, name, content, publish) => async dispatch => 
     dispatch(getNote(data));
 };
 
-const initialState = {notes: null};
+export const commonNotes = () => async dispatch => {
+    const res = await myFetch(`/api/notes`);
+    const data = await res.json();
+    if(!res.ok){
+        return;
+    };
+    dispatch(allNotes(data));
+};
+
+const initialState = {notes: null, commonNotes};
 
 const noteReducer = (state=initialState, action) => {
     switch(action.type){
@@ -90,6 +106,8 @@ const noteReducer = (state=initialState, action) => {
                 delete editNotes[key];
             };
             return {...state, notes: editNotes};
+        case ALL_NOTES:
+            return {...state, commonNotes: action.notes}
         default:
             return state;
     };

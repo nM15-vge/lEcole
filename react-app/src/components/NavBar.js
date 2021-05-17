@@ -33,11 +33,6 @@ const NavBar = () => {
               </NavLink>
             </div>
             <div className="nav-div center-flex">
-              <NavLink to="/users" exact={true} activeClassName="active">
-                Users
-              </NavLink>
-            </div>
-            <div className="nav-div center-flex">
               <div className="center-flex" onClick={openMenu}>
                 <img className="profileIcon" alt="avatar" src={user?.avatarUrl}/>
               </div>

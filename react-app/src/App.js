@@ -9,6 +9,7 @@ import User from "./components/User";
 import { useDispatch } from "react-redux";
 import { authenticate } from "./store/session";
 import HomePage from "./components/HomePage";
+import NotePage from "./components/Notes/NotePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,14 +39,11 @@ function App() {
             <SignUpForm />
           </div>
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <HomePage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/notes/:noteId" exact={true}>
+          <NotePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

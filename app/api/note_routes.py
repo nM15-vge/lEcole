@@ -6,21 +6,25 @@ from app.models import Note, db
 note_routes = Blueprint("notes", __name__)
 
 
-@note_routes.route("/", methods=["POST"])
+@note_routes.route("/", methods=["GET", "POST"])
 @login_required
 def notes():
-    body = request.get_json()
-    new_note = Note(
-        name=body.get("name"),
-        content=body.get("content"),
-        user_id=session["_user_id"],
-        notebook_id=body.get("notebookId", None),
-        private=body.get("private"),
-        notes_url=body.get("notesUrl", None)
-    )
-    db.session.add(new_note)
-    db.session.commit()
-    return {new_note.id: new_note.to_dict()}
+    if request.method == "GET":
+        notes = Note.query.filter(Note.notebook_id == "NULL").all()
+        return {note.id: note.to_dict() for note in notes}
+    elif request.method == "POST":
+        body = request.get_json()
+        new_note = Note(
+            name=body.get("name"),
+            content=body.get("content"),
+            user_id=session["_user_id"],
+            notebook_id=body.get("notebookId", None),
+            private=body.get("private"),
+            notes_url=body.get("notesUrl", None)
+        )
+        db.session.add(new_note)
+        db.session.commit()
+        return {new_note.id: new_note.to_dict()}
 
 
 @note_routes.route("/<int:noteId>", methods=["GET", "PUT", "DELETE"])
@@ -31,10 +35,10 @@ def update_note(noteId):
         return {note.id: note.to_dict()}
     elif request.method == "PUT":
         body = request.get_json()
-        note.name = request.get_json("name", note.name)
-        note.content = request.get_json("content", note.content)
-        note.private = request.get_json("private", note.private)
-        note.notes_url = request.get_json("notesUrl", note.notes_url)
+        note.name = body.get("name", note.name)
+        note.content = body.get("content", note.content)
+        note.private = body.get("private", note.private)
+        note.notes_url = body.get("notesUrl", note.notes_url)
         db.session.commit()
         return {note.id: note.to_dict()}
     elif request.method == "DELETE":

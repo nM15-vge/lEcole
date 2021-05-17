@@ -20,53 +20,7 @@
 }
 
 * {
-  /* font-family: 'Sedgwick Ave', cursive; */
   font-family: 'Sedgwick Ave Display', cursive;
-}
-
-/* HomePage */
-
-.homepage {
-  display: grid;
-  grid-template-areas:
-  "sidebar main";
-
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr;
-  border: 1px solid black;
-  height: 85vh;
-  width: 66vw;
-  position: relative;
-  left: 17%;
-  bottom: -1%;
-}
-
-.sidebar {
-  grid-area: sidebar;
-  border: 1px solid black;
-}
-
-.main {
-  grid-area: main;
-  display: grid;
-  grid-template-rows: 1fr 3fr;
-  grid-template-columns: 1fr;
-
-  grid-template-areas:
-  'header'
-  'notes';
-
-  border: 1px solid black;
-}
-
-.header {
-  grid-area: header;
-  border: 1px solid black;
-}
-
-.notes {
-  grid-area: notes;
-  border: 1px solid black;
 }
 
 /* Forms */
@@ -195,7 +149,7 @@ a:hover {
 /* Navbar */
 .nav-div {
     display: inline-block;
-    padding: 4px 150px 0px 150px;
+    padding: 4px 0px 0px 0px;
     height: 100%;
     width: 100px;
 }
@@ -204,7 +158,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 78%;
     height: 50px;
 }
 
@@ -295,6 +249,27 @@ a:hover {
   z-index: 100;
 }
 
+#newNotebook {
+  width: 100px;
+  height: 100px;
+  background: no-repeat center/80% url('./assets/Notebook.svg');
+  position: absolute;
+  left: 35%;
+  bottom: 70%;
+  transform: rotateZ(-100deg);
+  text-align: center;
+}
+
+#newNote {
+  width: 100px;
+  height: 100px;
+  background: no-repeat center/100% url('./assets/Paper.svg');
+  position: absolute;
+  left: 25%;
+  bottom: 65%;
+  transform: rotateX(55deg) rotateY(-17deg) rotateZ(-17deg);
+}
+
 .bookshelf {
   width: 15%;
   height: 48%;
@@ -335,4 +310,81 @@ a:hover {
   position: absolute;
   top: 9%;
   left: -10%;
+}
+
+/* Note Page */
+#notePage {
+  display: grid;
+  grid-template-areas:
+  "blankPage notes";
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  background: no-repeat center/102% url('./assets/OpenNotebook.svg');
+}
+
+.blankPage {
+  grid-area: blankPage;
+  border: 1px solid black;
+}
+
+.notes {
+  grid-area: notes;
+  display: grid;
+  grid-template-rows: 1fr 4.2fr;
+  grid-template-columns: 1fr;
+
+  grid-template-areas:
+  'titleNotes'
+  'contentNotes';
+
+  border: 1px solid black;
+}
+
+.titleNotes {
+  grid-area: titleNotes;
+  border: 1px solid black;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 40px;
+}
+
+.contentNotes {
+  grid-area: contentNotes;
+  border: 1px solid black;
+}
+
+#nameInput {
+  width: 400px;
+  align-items: flex-end;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+#nameInput:focus {
+  border: 1px solid var(--LIGHT_GREY);
+}
+
+#contentInput {
+  font-family: 'Sedgwick Ave', cursive;
+  display: flex;
+  border: 1px solid var(--LIGHT_GREY);
+  width: 82%;
+  height: 95%;
+  background: transparent;
+  position: relative;
+  left: 14%;
+}
+
+.contentDiv {
+  font-family: 'Sedgwick Ave', cursive;
+  position: relative;
+  left: 14%;
+  width: 82%;
+  height: 95%;
 }
