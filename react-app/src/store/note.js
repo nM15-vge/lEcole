@@ -80,7 +80,7 @@ export const updateNote = (noteId, name, content, publish) => async dispatch => 
 };
 
 export const commonNotes = () => async dispatch => {
-    const res = await myFetch(`/api/notes`);
+    const res = await myFetch(`/api/notes/`);
     const data = await res.json();
     if(!res.ok){
         return;

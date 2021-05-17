@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteNotebook, notebooks } from "../store/notebook";
 import NotebookForm from "./NotebookForm";
 import Modal from "../context/Modal";
-import { postNote } from "../store/note";
+import { commonNotes, postNote } from "../store/note";
 
 const HomePage = () => {
     const Notebook = require('../assets/Notebook.svg');
+    const Note = require('../assets/Paper.svg')
 
     const staticNotebooks = new Array(21).fill("staticNotebook")
     const [showModal, setShowModal] = useState(false);
@@ -15,6 +16,7 @@ const HomePage = () => {
     const history = useHistory();
 
     const userNotebooks = useSelector(state => state.notebooks.notebooks);
+    const notebooKIdNotes = useSelector(state => state.notes.commonNotes)
 
     const onClick = e => {
         e.preventDefault();
@@ -31,17 +33,27 @@ const HomePage = () => {
 
     useEffect(() => {
         dispatch(notebooks())
+        dispatch(commonNotes())
     }, [dispatch]);
 
 
     let top = 9;
     let left = -14;
+    let left2 = -14;
     const currTop = () => {
         return top + 66;
     };
     const updateLeft = () => {
+        if(left === 70){
+            left = -14;
+        };
         left +=4
     };
+
+    const noteLeft = () => {
+        left2 +=8
+    };
+
     return (
         <div className="container">
             <div className="floorPlan center-flex">
@@ -60,7 +72,6 @@ const HomePage = () => {
                         return <img  key={val+idx} alt={val +`${idx}`} style={{"top": `${currTop()}%`, "left": `${left}%`}} className="notebook"  src={Notebook}></img>
                     })}
                     {userNotebooks && Object.keys(userNotebooks).map(id => {
-                        left = -14;
                         updateLeft();
                         return (
                         <Link key={id} to={`/notebooks/${id}`}>
@@ -69,7 +80,16 @@ const HomePage = () => {
                         )
                     })}
                 </div>
-                <div className="bookshelf posX"><img className="notebook" src={Notebook}/></div>
+                <div className="bookshelf posX">
+                    {notebooKIdNotes && Object.keys(notebooKIdNotes).map(id => {
+                        noteLeft();
+                        return (
+                            <Link key={`${id}xyz`} to={`/notes/${id}`}>
+                                <img id={id} className="paperNote" title={notebooKIdNotes[id].name} src={Note} style={{"top": `${top}%`, "left": `${left2}%`}}/>
+                            </Link>
+                        )
+                    })}
+                    </div>
                 <div className="carpet"></div>
             </div>
         </div>

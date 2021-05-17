@@ -312,6 +312,15 @@ a:hover {
   left: -10%;
 }
 
+.paperNote {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 9%;
+  left: -10%;
+  transform: rotateY(70deg) rotateZ(70deg);
+}
+
 /* Note Page */
 #notePage {
   display: grid;
