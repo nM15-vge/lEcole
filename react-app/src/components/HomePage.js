@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteNotebook, notebooks } from "../store/notebook";
@@ -49,9 +50,20 @@ const HomePage = () => {
         dispatch(logout())
     };
 
-    const onDeleteNote = e => {
-        console.log("I was here.....")
-        dispatch(deleteNote(e.target.parentNode.id))
+    const onDeleteNote = (e, data) => {
+        dispatch(deleteNote(data.id))
+    };
+
+    const onEditNote = (e, data) => {
+        console.log(data.id)
+    };
+
+    const onDeleteNotebook = (e, data) => {
+        dispatch(deleteNotebook(data.id));
+    };
+
+    const onEditNotebook = (e, data) => {
+        console.log(data.id);
     };
 
     const createNote =  async () => {
@@ -110,10 +122,20 @@ const HomePage = () => {
                     {userNotebooks && Object.keys(userNotebooks).map(id => {
                         updateLeft();
                         return (
-                        <Link key={id} to={`/notebooks/${id}`} id={id} className="notebook" title={userNotebooks[id].name} style={{"top": `${top}%`, "left": `${left}%`}}>
-                            <span className="textTransform">{userNotebooks[id].name}</span>
-                            <div className="delete"></div>
-                        </Link>
+                        <ContextMenuTrigger id={`${id}notebooks`}>
+                            <Link key={id} to={`/notebooks/${id}`} id={id} className="notebook" title={userNotebooks[id].name} style={{"top": `${top}%`, "left": `${left}%`}}>
+                                <span className="textTransform">{userNotebooks[id].name}</span>
+                            </Link>
+                            <ContextMenu id={`${id}notebooks`} className="rightClick">
+                                <MenuItem data={{id}} onClick={onDeleteNotebook}>
+                                Delete
+                                </MenuItem>
+                                <MenuItem divider />
+                                <MenuItem data={{id}} onClick={onEditNotebook}>
+                                Edit
+                                </MenuItem>
+                            </ContextMenu>
+                        </ContextMenuTrigger>
                         )
                     })}
                 </div>
@@ -121,10 +143,20 @@ const HomePage = () => {
                     {notebooKIdNotes && Object.keys(notebooKIdNotes).map(id => {
                         noteLeft();
                         return (
-                            <Link key={`${id}xyz`} to={`/notes/${id}`} id={id} className="paperNote" alt={`${id}staticNB`} title={notebooKIdNotes[id].name} style={{"top": `${top}%`, "left": `${left2}%`}}>
-                                <span>{notebooKIdNotes[id].name}</span>
-                                {/* <div onClick={onDeleteNote} className="delete"></div> */}
-                            </Link>
+                                <ContextMenuTrigger id={`${id}notes`}>
+                                    <Link key={`${id}xyz`} to={`/notes/${id}`} id={id} className="paperNote" alt={`${id}staticNB`} title={notebooKIdNotes[id].name} style={{"top": `${top}%`, "left": `${left2}%`}}>
+                                        <span>{notebooKIdNotes[id].name}</span>
+                                    </Link>
+                                    <ContextMenu id={`${id}notes`} className="rightClick">
+                                        <MenuItem data={{id}} onClick={onDeleteNote}>
+                                        Delete
+                                        </MenuItem>
+                                        <MenuItem divider />
+                                        <MenuItem data={{id}} onClick={onEditNote}>
+                                        Edit
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </ContextMenuTrigger>
                         )
                     })}
                     </div>

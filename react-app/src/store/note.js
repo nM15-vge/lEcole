@@ -102,10 +102,12 @@ const noteReducer = (state=initialState, action) => {
             return {...state, notes: updatedNotes};
         case REMOVE_NOTE:
             const editNotes = {...state.notes};
+            const editCommonNotes = {...state.commonNotes}
             for (const key in action.note){
                 delete editNotes[key];
+                delete editCommonNotes[key];
             };
-            return {...state, notes: editNotes};
+            return {...state, notes: editNotes, commonNotes: editCommonNotes};
         case ALL_NOTES:
             return {...state, commonNotes: action.notes}
         default:

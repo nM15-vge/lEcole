@@ -369,6 +369,15 @@ a:hover {
   background: no-repeat center/100% url('./assets/Paper.svg')
 }
 
+.rightClick {
+  width: 100px;
+  height: 30px;
+  position: absolute !important;
+  top: 20% !important;
+  left: -20% !important;
+  z-index: 150;
+}
+
 .paperNote:hover {
   transform: rotateY(0deg) rotateZ(0deg);
   z-index: 100;
