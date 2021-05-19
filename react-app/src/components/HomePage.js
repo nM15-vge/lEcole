@@ -4,17 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteNotebook, notebooks } from "../store/notebook";
 import NotebookForm from "./NotebookForm";
 import Modal from "../context/Modal";
-import { commonNotes, postNote } from "../store/note";
-import LogoutButton from "./auth/LogoutButton";
+import { commonNotes, deleteNote, postNote } from "../store/note";
+import { logout } from "../store/session";
+
 
 const HomePage = () => {
     const Notebook = require('../assets/Notebook.svg');
     const Note = require('../assets/Paper.svg')
 
     const staticNotebooks = new Array(21).fill("staticNotebook")
-    const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const [showModal, setShowModal] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
 
     const openMenu = e => {
@@ -41,6 +43,15 @@ const HomePage = () => {
     const onClick = e => {
         e.preventDefault();
         setShowModal(true);
+    };
+
+    const onLogout = e => {
+        dispatch(logout())
+    };
+
+    const onDeleteNote = e => {
+        console.log("I was here.....")
+        dispatch(deleteNote(e.target.parentNode.id))
     };
 
     const createNote =  async () => {
@@ -88,7 +99,7 @@ const HomePage = () => {
                         <div className="avatar" onClick={openMenu}>
                             <img id="avatar" alt="avatar" src={user?.avatarUrl}/>
                         </div>
-                        {showMenu && <LogoutButton />}
+                        {showMenu && <div className="logout center-flex" onClick={onLogout}>Logout</div> }
                     </div>
                 </div>
                 <div className="bookshelf posY">
@@ -99,8 +110,9 @@ const HomePage = () => {
                     {userNotebooks && Object.keys(userNotebooks).map(id => {
                         updateLeft();
                         return (
-                        <Link key={id} to={`/notebooks/${id}`}>
-                            <img id={id} className="notebook" title={userNotebooks[id].name} src={Notebook} style={{"top": `${top}%`, "left": `${left}%`}}/>
+                        <Link key={id} to={`/notebooks/${id}`} id={id} className="notebook" title={userNotebooks[id].name} style={{"top": `${top}%`, "left": `${left}%`}}>
+                            <span className="textTransform">{userNotebooks[id].name}</span>
+                            <div className="delete"></div>
                         </Link>
                         )
                     })}
@@ -109,8 +121,9 @@ const HomePage = () => {
                     {notebooKIdNotes && Object.keys(notebooKIdNotes).map(id => {
                         noteLeft();
                         return (
-                            <Link key={`${id}xyz`} to={`/notes/${id}`}>
-                                <img id={id} className="paperNote" alt={`${id}staticNB`} title={notebooKIdNotes[id].name} src={Note} style={{"top": `${top}%`, "left": `${left2}%`}}/>
+                            <Link key={`${id}xyz`} to={`/notes/${id}`} id={id} className="paperNote" alt={`${id}staticNB`} title={notebooKIdNotes[id].name} style={{"top": `${top}%`, "left": `${left2}%`}}>
+                                <span>{notebooKIdNotes[id].name}</span>
+                                {/* <div onClick={onDeleteNote} className="delete"></div> */}
                             </Link>
                         )
                     })}

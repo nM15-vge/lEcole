@@ -119,6 +119,19 @@ input:focus {
   border: 1px solid var(--GREY_INPUT);
 }
 
+.logout {
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    left: 6%;
+    bottom: 130%;
+    font-size: 20px;
+}
+
+.logout:hover {
+  border: 1px solid var(--GREY_INPUT);
+}
+
 /* Text */
 p {
     font-size: 15px;
@@ -328,6 +341,19 @@ a:hover {
   position: absolute;
   top: 9%;
   left: -10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: no-repeat center/80% url('./assets/Notebook.svg')
+}
+
+.notebook:hover {
+  transform: rotateY(0deg);
+  z-index: 100;
+}
+
+.textTransform {
+  transform: rotateY(45deg);
 }
 
 .paperNote {
@@ -336,7 +362,26 @@ a:hover {
   position: absolute;
   top: 9%;
   left: -10%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   transform: rotateY(70deg) rotateZ(70deg);
+  background: no-repeat center/100% url('./assets/Paper.svg')
+}
+
+.paperNote:hover {
+  transform: rotateY(0deg) rotateZ(0deg);
+  z-index: 100;
+}
+
+.delete {
+  width: 30px;
+  height: 30px;
+  background: no-repeat center/100% url('./assets/Trashcan.svg');
+}
+
+span {
+  padding: 15px;
 }
 
 .chair {

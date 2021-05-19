@@ -60,7 +60,7 @@ const NotePage = () => {
             <div className="notes">
                 <div onClick={clickName} className="titleNotes center-flex">
                     <NavBar />
-                    {!displayed && notes && (<div>{notes[noteId].name}</div>)}
+                    {!displayed && notes && (<div>{notes[noteId]?.name}</div>)}
                     {displayed && (<input
                        id="nameInput"
                        onKeyDown={onSubmit}
@@ -72,7 +72,7 @@ const NotePage = () => {
                 </div>
                 <div onClick={clickContent} className="contentNotes">
                     {!contentDisplay && notes && (<div className="contentDiv">
-                        {notes[noteId].content}
+                        {notes[noteId]?.content}
                     </div>)}
                     {contentDisplay && (<input
                         id="contentInput"
