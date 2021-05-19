@@ -330,6 +330,28 @@ a:hover {
   transform: rotateY(70deg) rotateZ(70deg);
 }
 
+.rightChair {
+  width: 200px;
+  height: 250px;
+  position: absolute;
+  left: 67%;
+  bottom: 25%;
+  transform: rotateY(160deg) rotateZ(-30deg);
+  background: no-repeat center/100% url('./assets/RightChair.svg');
+
+}
+
+.leftChair {
+  width: 300px;
+  height: 450px;
+  position: absolute;
+  left: 70%;
+  bottom: 5%;
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  background: no-repeat center/100% url('./assets/RightChair.svg');
+
+}
+
 /* Note Page */
 #notePage {
   display: grid;

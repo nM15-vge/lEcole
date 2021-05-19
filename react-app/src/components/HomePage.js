@@ -110,12 +110,14 @@ const HomePage = () => {
                         noteLeft();
                         return (
                             <Link key={`${id}xyz`} to={`/notes/${id}`}>
-                                <img id={id} className="paperNote" title={notebooKIdNotes[id].name} src={Note} style={{"top": `${top}%`, "left": `${left2}%`}}/>
+                                <img id={id} className="paperNote" alt={`${id}staticNB`} title={notebooKIdNotes[id].name} src={Note} style={{"top": `${top}%`, "left": `${left2}%`}}/>
                             </Link>
                         )
                     })}
                     </div>
                 <div className="carpet"></div>
+                <div className="rightChair"></div>
+                {/* <div className="leftChair"></div> */}
             </div>
         </div>
     )
