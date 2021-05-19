@@ -108,10 +108,11 @@ input:focus {
 
 #logout {
     position: absolute;
-    width: 100px;
+    width: 50px;
     height: 30px;
-    right: 150px;
-    top: 50px;
+    right: 120px;
+    top: 60px;
+    font-size: 20px;
 }
 
 #logout:hover {
@@ -270,13 +271,21 @@ a:hover {
   transform: rotateX(55deg) rotateY(-17deg) rotateZ(-17deg);
 }
 
-#avatar {
-  width: 100px;
-  height: 100px;
+.avatar {
+  width: 150px;
+  height: 150px;
+  border: 4mm ridge var(--LIGHT_WHITE);
   border-radius: 50%;
   position: absolute;
-  left: 45%;
-  bottom: 70%;
+  left: 1%;
+  bottom: 140%;
+  transform: rotateY(80deg);
+}
+
+#avatar {
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
 }
 
 .bookshelf {
@@ -330,25 +339,14 @@ a:hover {
   transform: rotateY(70deg) rotateZ(70deg);
 }
 
-.rightChair {
+.chair {
   width: 200px;
   height: 250px;
   position: absolute;
-  left: 67%;
-  bottom: 25%;
-  transform: rotateY(160deg) rotateZ(-30deg);
-  background: no-repeat center/100% url('./assets/RightChair.svg');
-
-}
-
-.leftChair {
-  width: 300px;
-  height: 450px;
-  position: absolute;
-  left: 70%;
-  bottom: 5%;
-  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  background: no-repeat center/100% url('./assets/RightChair.svg');
+  left: 68%;
+  bottom: 27%;
+  transform: rotateY(150deg) rotateZ(-38deg) rotateX(-5deg);
+  background: no-repeat center/100% url('./assets/Chair.svg');
 
 }
 

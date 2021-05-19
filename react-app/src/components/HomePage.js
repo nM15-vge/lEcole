@@ -85,7 +85,7 @@ const HomePage = () => {
                     )}
                     <div onClick={createNote} id="newNote" className="center-flex">Create Note</div>
                     <div>
-                        <div onClick={openMenu}>
+                        <div className="avatar" onClick={openMenu}>
                             <img id="avatar" alt="avatar" src={user?.avatarUrl}/>
                         </div>
                         {showMenu && <LogoutButton />}
@@ -116,8 +116,7 @@ const HomePage = () => {
                     })}
                     </div>
                 <div className="carpet"></div>
-                <div className="rightChair"></div>
-                {/* <div className="leftChair"></div> */}
+                <div className="chair"></div>
             </div>
         </div>
     )
