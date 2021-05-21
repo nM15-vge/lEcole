@@ -370,12 +370,31 @@ a:hover {
 }
 
 .rightClick {
-  width: 100px;
-  height: 30px;
+  width: 50px;
+  height: 40px;
+  padding: 5px;
+  background-color: var(--WHITE);
+  border: 1px solid var(--LIGHT_BLUE);
   position: absolute !important;
   top: 20% !important;
   left: -20% !important;
   z-index: 150;
+}
+
+.leftClick {
+  width: 50px;
+  height: 40px;
+  padding: 5px;
+  background-color: var(--WHITE);
+  border: 1px solid var(--LIGHT_BLUE);
+  position: absolute !important;
+  top: 20% !important;
+  left: 70% !important;
+}
+
+.leftClick, .rightClick div{
+  border-bottom: 1px solid var(--LIGHT_BLUE);
+  padding: 2px 0px 2px 0px
 }
 
 .paperNote:hover {

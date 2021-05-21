@@ -11,7 +11,6 @@ import { logout } from "../store/session";
 
 const HomePage = () => {
     const Notebook = require('../assets/Notebook.svg');
-    const Note = require('../assets/Paper.svg')
 
     const staticNotebooks = new Array(21).fill("staticNotebook")
     const dispatch = useDispatch();
@@ -19,6 +18,7 @@ const HomePage = () => {
 
     const [showModal, setShowModal] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+    const [editModal, setEditModal] = useState(null);
 
     const openMenu = e => {
         e.preventDefault();
@@ -55,7 +55,7 @@ const HomePage = () => {
     };
 
     const onEditNote = (e, data) => {
-        console.log(data.id)
+        setEditModal(data.id);
     };
 
     const onDeleteNotebook = (e, data) => {
@@ -122,16 +122,18 @@ const HomePage = () => {
                     {userNotebooks && Object.keys(userNotebooks).map(id => {
                         updateLeft();
                         return (
-                        <ContextMenuTrigger id={`${id}notebooks`}>
+                            <ContextMenuTrigger id={`${id}notebooks`}>
+                            {editModal === id  && <Modal onClose={() => setEditModal(null)}>
+                                <NotebookForm />
+                            </Modal>}
                             <Link key={id} to={`/notebooks/${id}`} id={id} className="notebook" title={userNotebooks[id].name} style={{"top": `${top}%`, "left": `${left}%`}}>
                                 <span className="textTransform">{userNotebooks[id].name}</span>
                             </Link>
-                            <ContextMenu id={`${id}notebooks`} className="rightClick">
-                                <MenuItem data={{id}} onClick={onDeleteNotebook}>
+                            <ContextMenu id={`${id}notebooks`} className="leftClick">
+                                <MenuItem data={{id}} onClick={onDeleteNotebook} >
                                 Delete
                                 </MenuItem>
-                                <MenuItem divider />
-                                <MenuItem data={{id}} onClick={onEditNotebook}>
+                                <MenuItem data={{id}} onClick={onEditNotebook} >
                                 Edit
                                 </MenuItem>
                             </ContextMenu>
@@ -151,7 +153,6 @@ const HomePage = () => {
                                         <MenuItem data={{id}} onClick={onDeleteNote}>
                                         Delete
                                         </MenuItem>
-                                        <MenuItem divider />
                                         <MenuItem data={{id}} onClick={onEditNote}>
                                         Edit
                                         </MenuItem>
