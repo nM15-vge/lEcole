@@ -60,7 +60,7 @@ export const postNotebook = (name, publish) => async dispatch => {
     dispatch(getNotebook(data));
 };
 
-export const updateNotebook = (name, publish, notebookId) => async dispatch => {
+export const updateNotebook = (notebookId, name, publish) => async dispatch => {
     const res = await myFetch(`/api/notebooks/${notebookId}`, {
         method: "PUT",
         body: JSON.stringify({name, private: publish})

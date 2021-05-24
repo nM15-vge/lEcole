@@ -34,8 +34,8 @@ def update_notebook(notebookId):
                 if notebook else {"notebook": "null"})
     elif request.method == "PUT":
         body = request.get_json()
-        notebook.name = request.get_json("name", notebook.name)
-        notebook.private = request.get_json("private", notebook.private)
+        notebook.name = body.get("name", notebook.name)
+        notebook.private = body.get("private", notebook.private)
         db.session.commit()
         return {notebook.id: notebook.to_dict()}
     elif request.method == "DELETE":

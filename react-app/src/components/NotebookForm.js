@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { postNotebook } from "../store/notebook";
+import { postNotebook, updateNotebook } from "../store/notebook";
 
-const NotebookForm = ({onClose}) => {
+const NotebookForm = ({onClose, id}) => {
     const dispatch = useDispatch();
 
     const [name, setName] = useState("");
@@ -13,9 +13,12 @@ const NotebookForm = ({onClose}) => {
         e.preventDefault();
         if(name.length === 0){
             setErrors(["A notebook should have a name."])
-        }else if(errors.length === 0){
+        }else if(errors.length === 0 && !id){
             dispatch(postNotebook(name, privatePublic));
-            onClose()
+            onClose();
+        }else {
+            dispatch(updateNotebook(id, name, privatePublic));
+            onClose();
         };
     };
     return(
@@ -50,7 +53,8 @@ const NotebookForm = ({onClose}) => {
                 />
                 <label>Publish</label>
             </div>
-            <button type="submit">Create Notebook</button>
+            <button type="submit">{id ? "Update Notebook":"Create Notebook"}</button>
+            <button onClick={onClose}>Cancel</button>
         </form>
     )
 };

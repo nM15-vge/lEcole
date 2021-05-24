@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { postNote } from "../../store/note";
+import { updateNote } from "../../store/note";
 
-const NoteForm = ({onClose}) => {
+const NoteForm = ({onClose, id}) => {
     const dispatch = useDispatch();
 
     const [name, setName] = useState("");
-    const [content, setContent] = useState("");
     const [publish, setPublish] = useState(true);
-    const [notesUrl, setNotesUrl] = useState("");
-
+    const [errors, setErrors] = useState([])
     const onSubmit = e => {
         e.preventDefault();
         if(name.length === 0){
             setErrors(["A note should have a name."])
         }else if(errors.length === 0){
-            dispatch(postNote(name, content, notebookId, publish, notesUrl));
-            onClose;
+            const content = null;
+            dispatch(updateNote(id, name, content, publish));
+            onClose();
         }
     };
     return(
         <form onSubmit={onSubmit}>
+            <ul>
+                {errors && errors.map(error => (<li key={error}>{error}</li>))}
+            </ul>
             <div>
                 <label>Name</label>
                 <input
@@ -50,7 +52,10 @@ const NoteForm = ({onClose}) => {
                     checked={publish === false? true: false}
                 />
             </div>
-            <button type="submit">Create Note</button>
+            <button type="submit">Update Note</button>
+            <button onClick={onClose}>Cancel</button>
         </form>
     )
 };
+
+export default NoteForm;

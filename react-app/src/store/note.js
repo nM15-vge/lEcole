@@ -3,7 +3,8 @@ import myFetch from "./fetch";
 const SET_NOTES = "notes/SET_NOTES";
 const GET_NOTE = "notes/GET_NOTE";
 const REMOVE_NOTE = "notes/REMOVE_NOTE";
-const ALL_NOTES = "notes/ALL_NOTES"
+const ALL_NOTES = "notes/ALL_NOTES";
+const COMMON_NOTE = "notes/COMMON_NOTE";
 
 const setNotes = (notes) => ({
     type: SET_NOTES,
@@ -23,6 +24,11 @@ const removeNote = (note) => ({
 const allNotes = (notes) => ({
     type: ALL_NOTES,
     notes
+});
+
+const comNote = (note) => ({
+    type: COMMON_NOTE,
+    note
 })
 
 export const note = (noteId) => async dispatch => {
@@ -75,8 +81,11 @@ export const updateNote = (noteId, name, content, publish) => async dispatch => 
     const data = await res.json();
     if(!res.ok){
         return;
-    };
-    dispatch(getNote(data));
+    }else if(data.notebookId){
+        dispatch(getNote(data));
+    }else {
+        dispatch(comNote(data))
+    }
 };
 
 export const commonNotes = () => async dispatch => {
@@ -110,6 +119,12 @@ const noteReducer = (state=initialState, action) => {
             return {...state, notes: editNotes, commonNotes: editCommonNotes};
         case ALL_NOTES:
             return {...state, commonNotes: action.notes}
+        case COMMON_NOTE:
+            const updateComNotes = {...state.commonNotes}
+            for (const key in action.note){
+                updateComNotes[key] = action.note[key]
+            };
+            return {...state, commonNotes: updateComNotes}
         default:
             return state;
     };
