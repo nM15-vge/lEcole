@@ -51,6 +51,7 @@ const NoteForm = ({onClose, id}) => {
                     onChange={() => setPublish(false)}
                     checked={publish === false? true: false}
                 />
+                <label>Public</label>
             </div>
             <button type="submit">Update Note</button>
             <button onClick={onClose}>Cancel</button>

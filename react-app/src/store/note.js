@@ -79,9 +79,13 @@ export const updateNote = (noteId, name, content, publish) => async dispatch => 
         body: JSON.stringify({name, content, private: publish})
     });
     const data = await res.json();
+    const {[noteId]: {notebookId}} = data;
+    for(const key in data){
+        noteId = key
+    };
     if(!res.ok){
         return;
-    }else if(data.notebookId){
+    }else if(notebookId){
         dispatch(getNote(data));
     }else {
         dispatch(comNote(data))

@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { note, updateNote } from "../../store/note";
 import NavBar from "../NavBar";
+import NoteTitle from "./NoteTitle";
 
 const NotePage = () => {
     const {noteId} = useParams();
     const dispatch = useDispatch();
     const notes = useSelector(state => state.notes.notes);
-    const [name, setName] = useState("")
     const [content, setContent] = useState("")
     const [displayed, setDisplayed] = useState(false)
     const [contentDisplay, setContentDisplay] = useState(false);
@@ -22,27 +22,13 @@ const NotePage = () => {
         setContentDisplay(true)
     };
 
-    const onSubmit = e => {
-        if(e.keyCode === 13){
-            if(!name.length){
-                setDisplayed(false);
-                return;
-            }else {
-              const x = name.length? name: notes[noteId].name
-              const y = content.length? content: notes[noteId].content
-              dispatch(updateNote(noteId, x, y));
-              setDisplayed(false);
-            };
-        };
-    };
-
     const onSubmit2 = e => {
         if(e.keyCode === 13){
             if(!content.length){
                 setContentDisplay(false);
                 return;
             }else {
-              const x = name.length? name: notes[noteId].name
+              const x = notes[noteId].name;
               const y = content.length? content: notes[noteId].content
               dispatch(updateNote(noteId, x, y));
               setContentDisplay(false);
@@ -60,15 +46,7 @@ const NotePage = () => {
             <div className="notes">
                 <div onClick={clickName} className="titleNotes center-flex">
                     <NavBar />
-                    {!displayed && notes && (<div>{notes[noteId]?.name}</div>)}
-                    {displayed && (<input
-                       id="nameInput"
-                       onKeyDown={onSubmit}
-                       type="text"
-                       name="name"
-                       onChange={e => setName(e.target.value)}
-                       value={name}
-                    />)}
+                    <NoteTitle displayed={displayed} notes={notes} setDisplayed={setDisplayed} noteId={noteId}/>
                 </div>
                 <div onClick={clickContent} className="contentNotes">
                     {!contentDisplay && notes && (<div className="contentDiv">
