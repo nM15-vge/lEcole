@@ -14,10 +14,14 @@ const LoginForm = () => {
 
   const onLogin = (e) => {
     e.preventDefault();
-    const data = dispatch(login(email, password))
-    if (data.errors){
+    if (!email.length){
+      setErrors(["Please enter your email."]);
+    }else if(!password.length){
+      setErrors(["Please provide your password."])
+    }else {
+      const data = dispatch(login(email, password));
       setErrors(data.errors);
-    };
+    }
   };
 
   const demoLogin = e => {
@@ -42,11 +46,11 @@ const LoginForm = () => {
 
   return (
     <form id="login-form" onSubmit={onLogin}>
-      <div>
+      <ol>
         {errors.map((error) => (
-          <div>{error}</div>
+          <li>{error}</li>
         ))}
-      </div>
+      </ol>
       <div>
         <label htmlFor="email">Email:</label>
         <input

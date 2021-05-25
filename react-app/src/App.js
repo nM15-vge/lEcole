@@ -30,12 +30,11 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/login" exact={true}>
-          <div className="size center-flex">
+          <div className="size center-flex glassDoor">
             <LoginForm />
             {/* <img src={glassPane} style={{"width": "45%", "height": "45%", "transform": "rotate(45deg)", "position": "absolute"}} />
             <img src={glassPane} style={{"width": "45%", "height": "45%", "transform": "rotate(-45deg)", "position": "absolute"}}/> */}
           </div>
-
         </Route>
         <Route path="/sign-up" exact={true}>
           <div className="size center-flex glassDoor">

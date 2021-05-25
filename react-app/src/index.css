@@ -85,16 +85,23 @@ input:focus {
 }
 
 #login-form {
-    height: 60%;
+    height: 65%;
     width: 50%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    background: radial-gradient(farthest-corner at 0 0, #e9f7f4, white, #e9f7f4);
+    background-size: 20pc 20pc;
+    position: relative;
+    left: -.5%;
+    color: black;
 }
 
-#login-form input, button, div{
+#login-form input,
+#login-form button,
+#login-form div{
     width: 300px;
 }
 
@@ -108,8 +115,8 @@ input:focus {
     font-size: 25px;
     text-align: center;
     font-display: fallback;
-    background: radial-gradient(rgba(54,194, 243, .3), rgba(44, 128, 111, .2), rgba(134, 117, 159, .1));
     border: 2px solid;
+    /* box-sizing: border-box; */
     border-image: linear-gradient(45deg, rgb(10, 10, 212), rgb(23, 99, 23), rgb(249, 222, 89)) 2;
 }
 
