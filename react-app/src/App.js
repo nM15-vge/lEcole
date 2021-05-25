@@ -25,16 +25,20 @@ function App() {
     return null;
   };
 
+  const glassPane = require("./assets/GlassPane.svg")
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/login" exact={true}>
-          <div id="form-container" className="size center-flex">
+          <div className="size center-flex">
             <LoginForm />
+            {/* <img src={glassPane} style={{"width": "45%", "height": "45%", "transform": "rotate(45deg)", "position": "absolute"}} />
+            <img src={glassPane} style={{"width": "45%", "height": "45%", "transform": "rotate(-45deg)", "position": "absolute"}}/> */}
           </div>
+
         </Route>
         <Route path="/sign-up" exact={true}>
-          <div className="size center-flex">
+          <div className="size center-flex glassDoor">
             <SignUpForm />
           </div>
         </Route>

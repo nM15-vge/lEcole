@@ -34,6 +34,7 @@ form {
     border-radius: 15px;
     box-shadow: 1px 1px 5px 1px var(--LIGHT_BLUE);
     font-family: 'Sedgwick Ave Display', cursive;
+    z-index: 100;
 }
 
 form button {
@@ -85,6 +86,31 @@ input:focus {
 
 #login-form {
     height: 60%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-form input, button, div{
+    width: 300px;
+}
+
+#splash-intro {
+    height: 60%;
+    margin: 10px;
+    padding: 15px;
+    color: black;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    text-align: center;
+    font-display: fallback;
+    background: radial-gradient(rgba(54,194, 243, .3), rgba(44, 128, 111, .2), rgba(134, 117, 159, .1));
+    border: 2px solid;
+    border-image: linear-gradient(45deg, rgb(10, 10, 212), rgb(23, 99, 23), rgb(249, 222, 89)) 2;
 }
 
 #signup-form {
@@ -215,11 +241,34 @@ a:hover {
     background: no-repeat center/100% url("https://c2.staticflickr.com/8/7591/16554788810_6e4e3c6a4f_b.jpg")
 }
 
-#form-container {
-  width: 100%;
-  height: 90%;
+#glassPaneX {
+  width: 50vw;
+  height: 50vh;
   transform: rotateX(0deg);
-  background: no-repeat center/50% url("./assets/GlassDoor.svg");
+  background: no-repeat center/10% url("./assets/GlassPane.svg");
+  transform: rotate(-45deg);
+  position:absolute;
+  /* background-size: 100% 100% !important; */
+}
+
+.glassDoor {
+  width: 100vw;
+  height: 100vh;
+  transform: rotateX(0deg);
+  background-image: url("./assets/GlassPane.svg");
+  background-repeat: repeat-x !important;
+  position:absolute;
+  background-size: 25% 100% !important;
+}
+
+#glassPaneY {
+  width: 50vw;
+  height: 50vh;
+  transform: rotateX(0deg);
+  background: no-repeat center/10% url("./assets/GlassPane.svg");
+  transform: rotate(45deg);
+  /* background-size: 100% 100% !important; */
+  position: absolute;
 }
 
 .size {

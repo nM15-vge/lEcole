@@ -72,6 +72,8 @@ const LoginForm = () => {
           <p className="center-flex" >Don't have an account? <a href="/sign-up">Sign up</a></p>
         </div>
       </div>
+      <div id="splash-intro">"An app that gives you the opportunity to store your personal, work, or school notes in an online notebook where you'll have access to
+      your notebooks without the hassle of carrying them."</div>
     </form>
   );
 };
