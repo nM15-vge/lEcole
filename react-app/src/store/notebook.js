@@ -65,7 +65,7 @@ export const updateNotebook = (notebookId, name, publish) => async dispatch => {
         method: "PUT",
         body: JSON.stringify({name, private: publish})
     });
-    const data = res.json();
+    const data = await res.json();
     if(!res.ok){
         return;
     };

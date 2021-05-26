@@ -471,16 +471,6 @@ span {
   padding: 15px;
 }
 
-.chair {
-  width: 200px;
-  height: 250px;
-  position: absolute;
-  left: 68%;
-  bottom: 27%;
-  transform: rotateY(150deg) rotateZ(-38deg) rotateX(-5deg);
-  background: no-repeat center/100% url('./assets/Chair.svg');
-
-}
 
 /* Note Page */
 #notePage {

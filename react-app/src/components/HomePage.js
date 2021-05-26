@@ -147,7 +147,7 @@ const HomePage = () => {
                     {notebooKIdNotes && Object.keys(notebooKIdNotes).map(id => {
                         noteLeft();
                         return (
-                                <ContextMenuTrigger id={`${id}notes`}>
+                                <ContextMenuTrigger key={`${id}notes`} id={`${id}notes`}>
                                     {editModal && <Modal onClose={() => setEditModal(null)}>
                                         <NoteForm onClose={() => setEditModal(null)} id={editModal}/>
                                     </Modal>}
@@ -167,7 +167,6 @@ const HomePage = () => {
                     })}
                     </div>
                 <div className="carpet"></div>
-                <div className="chair"></div>
             </div>
         </div>
     )

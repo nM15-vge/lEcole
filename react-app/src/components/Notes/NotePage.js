@@ -10,6 +10,7 @@ const NotePage = () => {
     const {noteId} = useParams();
     const dispatch = useDispatch();
     const notes = useSelector(state => state.notes.notes);
+    const commNotes = useSelector(state => state.notes.commonNotes)
     const [content, setContent] = useState("")
     const [displayed, setDisplayed] = useState(false)
     const [contentDisplay, setContentDisplay] = useState(false);
@@ -46,7 +47,7 @@ const NotePage = () => {
             <div className="notes">
                 <div onClick={clickName} className="titleNotes center-flex">
                     <NavBar />
-                    <NoteTitle displayed={displayed} notes={notes} setDisplayed={setDisplayed} noteId={noteId}/>
+                    <NoteTitle displayed={displayed} notes={notes} setDisplayed={setDisplayed} noteId={noteId} commNotes={commNotes}/>
                 </div>
                 <div onClick={clickContent} className="contentNotes">
                     {!contentDisplay && notes && (<div className="contentDiv">

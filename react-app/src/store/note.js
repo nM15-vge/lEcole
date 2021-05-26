@@ -101,7 +101,7 @@ export const commonNotes = () => async dispatch => {
     dispatch(allNotes(data));
 };
 
-const initialState = {notes: null, commonNotes};
+const initialState = {notes: null, commonNotes: null};
 
 const noteReducer = (state=initialState, action) => {
     switch(action.type){
