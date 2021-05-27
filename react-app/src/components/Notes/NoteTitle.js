@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { commonNotes, note, updateNote } from "../../store/note";
 
-const NoteTitle = ({displayed, notes, setDisplayed, noteId, commNotes}) => {
+const NoteTitle = ({displayed, notes, setDisplayed, noteId}) => {
     const dispatch = useDispatch();
     const [name, setName] = useState(() => {
-        if(notes) return notes[noteId].name
-        if(commNotes) return commNotes[noteId].name
+        if(notes) return notes[noteId]?.name
+        // if(commNotes) return commNotes[noteId]?.name
         return ""
     });
 
@@ -20,11 +20,9 @@ const NoteTitle = ({displayed, notes, setDisplayed, noteId, commNotes}) => {
               let x;
               if(name.length){
                   x=name;
-              }else if(notes[noteId]){
-                  x=notes[noteId].name;
               }else{
-                  x=commonNotes[noteId].name;
-              };
+                  x=notes[noteId].name;
+              }
 
               const y = notes[noteId].content
               dispatch(updateNote(noteId, x, y));
@@ -34,7 +32,8 @@ const NoteTitle = ({displayed, notes, setDisplayed, noteId, commNotes}) => {
     };
     return(
         <>
-            {!displayed && notes && (<div>{notes[noteId]?.name || commNotes[noteId]?.name}</div>)}
+            {!displayed && notes && (<div id="d">{notes[noteId]?.name}</div>)}
+            {/* {!displayed && commNotes && (<div id="e">{commNotes[noteId]?.name}</div>)} */}
             {displayed &&
             (<input
                 id="nameInput"

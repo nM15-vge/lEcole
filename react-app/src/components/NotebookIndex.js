@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { notes, postNote } from "../store/note";
+import NavBar from "./NavBar";
 
 const NotebookIndex = () => {
     const {notebookId} = useParams();
@@ -21,18 +22,20 @@ const NotebookIndex = () => {
         dispatch(notes(notebookId))
     }, [dispatch]);
 
-    return (<div id="notebookIndex">
-        <div className="backcover">
-        <div onClick={createNote} className="center-flex">Create Note</div>
-        </div>
-        <ol className="index">
-            {notebookNotes && Object.keys(notebookNotes).map(id => (
-            <li type="I" key={id}>
-                <Link to={`/notebooks/${notebookId}/notes/${id}`}>{notebookNotes[id].name}</Link>
-            </li>
-            ))}
-        </ol>
-    </div>)
+    return (
+        <div id="notebookIndex">
+            <div className="backcover">
+                <NavBar notebookId={notebookId}/>
+                <div onClick={createNote} className="newNote center-flex">Create Note</div>
+            </div>
+            <ol className="index">
+                {notebookNotes && Object.keys(notebookNotes).map(id => (
+                <li type="I" key={id}>
+                    <Link to={`/notebooks/${notebookId}/notes/${id}`}>{notebookNotes[id].name}</Link>
+                </li>
+                ))}
+            </ol>
+        </div>)
 }
 
 export default NotebookIndex;

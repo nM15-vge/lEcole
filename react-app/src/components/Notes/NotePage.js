@@ -7,10 +7,10 @@ import NavBar from "../NavBar";
 import NoteTitle from "./NoteTitle";
 
 const NotePage = () => {
-    const {noteId} = useParams();
+    const {noteId, notebookId} = useParams();
     const dispatch = useDispatch();
     const notes = useSelector(state => state.notes.notes);
-    const commNotes = useSelector(state => state.notes.commonNotes)
+    // const commNotes = useSelector(state => state.notes.commonNotes)
     const [content, setContent] = useState("")
     const [displayed, setDisplayed] = useState(false)
     const [contentDisplay, setContentDisplay] = useState(false);
@@ -43,18 +43,21 @@ const NotePage = () => {
 
     return (
         <div id="notePage">
-            <div className="blankPage"></div>
+            <div className="blankPage">
+                <iframe style={{"width": "92.5%", "height":"97%"}}src="https://open.appacademy.io/">
+                </iframe>
+            </div>
             <div className="notes">
                 <div onClick={clickName} className="titleNotes center-flex">
-                    <NavBar />
-                    <NoteTitle displayed={displayed} notes={notes} setDisplayed={setDisplayed} noteId={noteId} commNotes={commNotes}/>
+                    <NavBar notebookId={notebookId}/>
+                    <NoteTitle displayed={displayed} notes={notes} setDisplayed={setDisplayed} noteId={noteId} />
                 </div>
                 <div onClick={clickContent} className="contentNotes">
                     {!contentDisplay && notes && (<div className="contentDiv">
                         {notes[noteId]?.content}
                     </div>)}
-                    {contentDisplay && (<input
-                        id="contentInput"
+                    {contentDisplay && (<textarea
+                        id="contentTextArea"
                         onKeyDown={onSubmit2}
                         type="text"
                         name="content"

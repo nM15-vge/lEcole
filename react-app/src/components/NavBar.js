@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
-const NavBar = () => {
+const NavBar = ({notebookId}) => {
   const user = useSelector(state => state.session.user);
 
   const [showMenu, setShowMenu] = useState(false);
@@ -32,6 +32,12 @@ const NavBar = () => {
                 Home
               </NavLink>
             </div>
+            {notebookId && <div className="nav-div center flex">
+              <NavLink to={`/notebooks/${notebookId}`}>
+                Index
+              </NavLink>
+            </div>
+            }
             <div className="nav-div center-flex">
               <div className="center-flex" onClick={openMenu}>
                 <img className="profileIcon" alt="avatar" src={user?.avatarUrl}/>

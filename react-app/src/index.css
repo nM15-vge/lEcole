@@ -506,7 +506,6 @@ span {
 
 .titleNotes {
   grid-area: titleNotes;
-  border: 1px solid black;
   flex-direction: column;
   justify-content: space-between;
   font-size: 40px;
@@ -514,7 +513,6 @@ span {
 
 .contentNotes {
   grid-area: contentNotes;
-  /* border: 1px solid black; */
 }
 
 #nameInput {
@@ -530,15 +528,16 @@ span {
   border: 1px solid var(--LIGHT_GREY);
 }
 
-#contentInput {
+#contentTextArea {
   font-family: 'Sedgwick Ave', cursive;
   display: flex;
-  border: 1px solid var(--LIGHT_GREY);
+  border: 1px solid var(--LIGHT_GREY) !important;
   width: 82%;
   height: 95%;
   background: transparent;
   position: relative;
   left: 14%;
+  font-size: 15px;
 }
 
 .contentDiv {
@@ -565,6 +564,10 @@ span {
 
 .backcover {
   grid-area: backcover;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: 9%;
 }
 
 .index {
@@ -581,4 +584,13 @@ span {
 .index a {
   font-family: 'Sedgwick Ave', cursive;
   font-size: 14px;
+}
+
+.newNote {
+  width: 200px;
+  height: 200px;
+  background: no-repeat center/100% url('./assets/Paper.svg');
+  position: inherit;
+  left: 30%;
+
 }
