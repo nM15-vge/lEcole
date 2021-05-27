@@ -26,11 +26,6 @@ const allNotes = (notes) => ({
     notes
 });
 
-const comNote = (note) => ({
-    type: COMMON_NOTE,
-    note
-})
-
 export const note = (noteId) => async dispatch => {
     const res = await myFetch(`/api/notes/${noteId}`);
     const data = await res.json();

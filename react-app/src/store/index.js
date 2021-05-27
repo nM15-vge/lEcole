@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import session from "./session";
 import notebooks from "./notebook";
 import notes from "./note";
+import libraryLinks from "./libraryLink"
 
 const rootReducer = combineReducers({
     session,
     notebooks,
-    notes
+    notes,
+    libraryLinks
 });
 
 let enhancer;
