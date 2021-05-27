@@ -31,7 +31,6 @@ def notes():
 @note_routes.route("/<int:noteId>", methods=["GET", "PUT", "DELETE"])
 @login_required
 def update_note(noteId):
-    print(noteId)
     note = Note.query.get(noteId)
     if request.method == "GET":
         return ({note.id: note.to_dict()}
