@@ -211,6 +211,7 @@ const HomePage = () => {
                     )}
                 </div>
                 <div className="carpet"></div>
+                <div className="logoImage"></div>
             </div>
         </div>
     )

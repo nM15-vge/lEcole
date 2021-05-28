@@ -401,6 +401,19 @@ a:hover {
 
 }
 
+.logoImage {
+  width: 5%;
+  height: 10%;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 10%;
+  left: 37%;
+  background: no-repeat center/100% url('./assets/Logo.svg');
+  z-index: 200;
+  transform: rotateX(17deg) rotateY(3deg) rotateZ(4deg) rotate(-30deg);
+}
+
 #bookmarkContainer {
   display: flex;
   flex-direction: column;
