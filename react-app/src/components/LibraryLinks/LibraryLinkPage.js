@@ -1,52 +1,19 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { postLibraryLink, updateLibraryLink } from "../../store/libraryLink";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { libraryLinks } from "../../store/libraryLink";
 
-const LibraryLinkForm = ({libraryLinkId, onclose}) => {
+const LibraryLinkPage = ({linkId}) => {
     const dispatch = useDispatch();
+    const links = useSelector(state => state.libraryLinks.libraryLinks)
 
-    const [title, setTitle] = useState("");
-    const [libraryLinkUrl, setLibraryLinkUrl] = useState("")
-    const [errors, setErrors] = useState([]);
-
-    const onSubmit = e => {
-        e.preventDefault();
-        if(title.length === 0){
-            setErrors(["A library link should have a title."])
-        }else if(errors.length === 0){
-            dispatch(postLibraryLink({title, libraryLinkUrl}));
-            onclose();
-        }else if(libraryLinkId){
-            dispatch(updateLibraryLink({libraryLinkId, title, libraryLinkUrl}))
-        }
-    };
+    useEffect(() => {
+        dispatch(libraryLinks());
+    }, [dispatch])
     return (
-        <form onSubmit={onSubmit}>
-            <ul>
-                {errors && errors.map(error => (<li key={error}>{error}</li>))}
-            </ul>
-            <div>
-                <label>Title</label>
-                <input
-                    type="text"
-                    name="title"
-                    onChange={e => setTitle(e.target.value)}
-                    value={title}
-                />
-            </div>
-            <div>
-                <label>Url</label>
-                <input
-                    type="text"
-                    name="url"
-                    onChange={e => setLibraryLinkUrl(e.target.value)}
-                    value={libraryLinkUrl}
-                />
-            </div>
-            <button type="submit">{libraryLinkId? "Update Link":"Create Link"}</button>
-            <button onClick={onclose}>Cancel</button>
-        </form>
+        <>
+            {linkId && links && <iframe style={{"width": "92.5%", "height":"97%"}} src={links[linkId]} />}
+        </>
     )
 };
 
-export default LibraryLinkForm;
+export default LibraryLinkPage;

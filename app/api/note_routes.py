@@ -10,7 +10,7 @@ note_routes = Blueprint("notes", __name__)
 @login_required
 def notes():
     if request.method == "GET":
-        notes = Note.query.all()
+        notes = Note.query.filter(Note.user_id == session["_user_id"]).all()
         return ({note.id: note.to_dict() for note in notes
                  if note.notebook_id is None})
     elif request.method == "POST":

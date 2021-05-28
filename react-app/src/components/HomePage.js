@@ -109,6 +109,7 @@ const HomePage = () => {
                         </Modal>
                     )}
                     <div onClick={createNote} id="newNote" className="center-flex">Create Note</div>
+                    <div onClick={createBookmark} id="newBookmark" className="center-flex">Create Link</div>
                     <div>
                         <div className="avatar" onClick={openMenu}>
                             <img id="avatar" alt="avatar" src={user?.avatarUrl}/>
