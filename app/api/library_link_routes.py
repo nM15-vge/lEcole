@@ -11,7 +11,7 @@ def library_links():
     if request.method == "GET":
         library_links = Library_Link.query.filter(Library_Link.user_id ==
                                                   session["_user_id"]).all()
-        return ({library_links.id: library_link.to_dict()
+        return ({library_link.id: library_link.to_dict()
                  for library_link in library_links})
     elif request.method == "POST":
         body = request.get_json()

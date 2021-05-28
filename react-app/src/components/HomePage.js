@@ -8,7 +8,8 @@ import Modal from "../context/Modal";
 import { commonNotes, deleteNote, postNote } from "../store/note";
 import { logout } from "../store/session";
 import NoteForm from "./Notes/NoteForm"
-
+import LibraryLinkForm from "./LibraryLinks/LibraryLinkForm";
+import { deleteLibraryLink, libraryLinks } from "../store/libraryLink";
 
 const HomePage = () => {
     const Notebook = require('../assets/Notebook.svg');
@@ -18,9 +19,11 @@ const HomePage = () => {
     const history = useHistory();
 
     const [showModal, setShowModal] = useState(false);
+    const [linkModal, setLinkModal] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [editModal, setEditModal] = useState(null);
     const [editNBModal, setEditNBModal] = useState(null);
+    const [editLinkModal, setEditLinkModal] = useState(null);
 
     const openMenu = e => {
         e.preventDefault();
@@ -41,11 +44,17 @@ const HomePage = () => {
 
     const userNotebooks = useSelector(state => state.notebooks.notebooks);
     const notebooKIdNotes = useSelector(state => state.notes.commonNotes);
+    const links = useSelector(state => state.libraryLinks.libraryLinks)
     const user = useSelector(state => state.session.user);
 
     const onClick = e => {
         e.preventDefault();
         setShowModal(true);
+    };
+
+    const onLinkClick = e => {
+        e.preventDefault();
+        setLinkModal(true);
     };
 
     const onLogout = e => {
@@ -68,6 +77,14 @@ const HomePage = () => {
         setEditNBModal(data.id)
     };
 
+    const onEditLink = (e, data) => {
+        setEditLinkModal(data.id);
+    };
+
+    const onDeleteLink = (e, data) => {
+        dispatch(deleteLibraryLink(data.id));
+    };
+
     const createNote =  async () => {
         const newNote = await dispatch(postNote("Untitled Note"));
         for (const key in newNote){
@@ -76,8 +93,9 @@ const HomePage = () => {
     };
 
     useEffect(() => {
-        dispatch(notebooks())
-        dispatch(commonNotes())
+        dispatch(notebooks());
+        dispatch(commonNotes());
+        dispatch(libraryLinks());
     }, [dispatch]);
 
 
@@ -109,7 +127,12 @@ const HomePage = () => {
                         </Modal>
                     )}
                     <div onClick={createNote} id="newNote" className="center-flex">Create Note</div>
-                    <div onClick={createBookmark} id="newBookmark" className="center-flex">Create Link</div>
+                    <div onClick={onLinkClick} id="newBookmark" className="center-flex">Create Link</div>
+                    {linkModal && (
+                        <Modal onClose={() => setLinkModal(false)}>
+                            <LibraryLinkForm onClose={() => setLinkModal(false)}/>
+                        </Modal>
+                    )}
                     <div>
                         <div className="avatar" onClick={openMenu}>
                             <img id="avatar" alt="avatar" src={user?.avatarUrl}/>
@@ -166,7 +189,27 @@ const HomePage = () => {
                                 </ContextMenuTrigger>
                         )
                     })}
-                    </div>
+                </div>
+                <div id="bookmarkContainer">
+                    {links && Object.keys(links).map(id =>
+                        <ContextMenuTrigger key={`bookmark${id}`} id={`${id}bookmark`}>
+                            {editLinkModal && <Modal onClose={() => setEditLinkModal(null)}>
+                                <LibraryLinkForm libraryLinkId={editLinkModal} onClose={() => setEditLinkModal(null)} link={links[editLinkModal]}/>
+                            </Modal>}
+                            <div className="starBookmark center-flex">
+                                {links[id].title}
+                            </div>
+                            <ContextMenu id={`${id}bookmark`} className="clickLink">
+                                <MenuItem data={{id}} onClick={onDeleteLink}>
+                                    Delete
+                                </MenuItem>
+                                <MenuItem data={{id}} onClick={onEditLink}>
+                                    Edit
+                                </MenuItem>
+                            </ContextMenu>
+                        </ContextMenuTrigger>
+                    )}
+                </div>
                 <div className="carpet"></div>
             </div>
         </div>

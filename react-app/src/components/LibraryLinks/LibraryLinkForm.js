@@ -2,22 +2,23 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postLibraryLink, updateLibraryLink } from "../../store/libraryLink";
 
-const LibraryLinkForm = ({libraryLinkId, onclose}) => {
+const LibraryLinkForm = ({libraryLinkId, onClose, link}) => {
     const dispatch = useDispatch();
 
-    const [title, setTitle] = useState("");
-    const [libraryLinkUrl, setLibraryLinkUrl] = useState("")
+    const [title, setTitle] = useState(link ? link.title: "");
+    const [libraryLinkUrl, setLibraryLinkUrl] = useState(link? link.library_link_url:"")
     const [errors, setErrors] = useState([]);
 
     const onSubmit = e => {
         e.preventDefault();
         if(title.length === 0){
             setErrors(["A library link should have a title."])
-        }else if(errors.length === 0){
-            dispatch(postLibraryLink({title, libraryLinkUrl}));
-            onclose();
         }else if(libraryLinkId){
-            dispatch(updateLibraryLink({libraryLinkId, title, libraryLinkUrl}))
+            dispatch(updateLibraryLink(libraryLinkId, title, libraryLinkUrl))
+            onClose();
+        }else if(errors.length === 0){
+            dispatch(postLibraryLink(title, libraryLinkUrl));
+            onClose();
         }
     };
     return (
@@ -44,7 +45,7 @@ const LibraryLinkForm = ({libraryLinkId, onclose}) => {
                 />
             </div>
             <button type="submit">{libraryLinkId? "Update Link":"Create Link"}</button>
-            <button onClick={onclose}>Cancel</button>
+            <button onClick={onClose}>Cancel</button>
         </form>
     )
 };

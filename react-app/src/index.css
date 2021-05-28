@@ -341,6 +341,16 @@ a:hover {
   transform: rotateX(55deg) rotateY(-17deg) rotateZ(-17deg);
 }
 
+#newBookmark {
+  width: 150px;
+  height: 150px;
+  background: no-repeat center/100% url('./assets/Bookmark.svg');
+  transform: rotateX(65deg) rotateY(-17deg) rotateZ(-30deg);
+  position: absolute;
+  left: 45%;
+  bottom: 60%;
+}
+
 .avatar {
   width: 150px;
   height: 150px;
@@ -389,6 +399,36 @@ a:hover {
   left: 20%;
   background: no-repeat center/100% url('./assets/Carpet.svg');
 
+}
+
+#bookmarkContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 20.5%;
+  height: 48%;
+  position: absolute;
+  top: 20%;
+  left: 55%;
+}
+
+.starBookmark {
+  width: 75px;
+  height: 75px;
+  background: no-repeat center/100% url('./assets/Bookmark.svg');
+  font-size: 12px;
+}
+
+.clickLink {
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+  font-size: 20px;
+  background-color: var(--WHITE);
+  border: 1px solid var(--LIGHT_BLUE);
+  position: absolute !important;
+  top: 20% !important;
+  left: 80% !important;
 }
 
 .notebook {
@@ -451,7 +491,7 @@ a:hover {
   left: 70% !important;
 }
 
-.leftClick div, .rightClick div{
+.leftClick div, .rightClick div, .clickLink div{
   border-bottom: 1px solid var(--LIGHT_BLUE);
   padding: 2px 0px 2px 0px
 }

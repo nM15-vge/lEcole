@@ -73,13 +73,13 @@ const libraryLinkReducer = (state=initialState, action) => {
         case GET_LINK:
             const updateLibraryLinks = {...state.libraryLinks};
             for(const key in action.libraryLink){
-                updateLibraryLink[key] = action.libraryLink[key];
+                updateLibraryLinks[key] = action.libraryLink[key];
             };
             return {...state, libraryLinks: updateLibraryLinks}
         case REMOVE_LINK:
             const editLibraryLinks = {...state.libraryLinks};
             for(const key in action.libraryLink){
-                editLibraryLinks[key] = action.libraryLink[key];
+                delete editLibraryLinks[key];
             };
             return {...state, libraryLinks: editLibraryLinks}
         default:

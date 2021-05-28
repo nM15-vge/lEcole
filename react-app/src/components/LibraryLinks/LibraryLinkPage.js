@@ -8,10 +8,11 @@ const LibraryLinkPage = ({linkId}) => {
 
     useEffect(() => {
         dispatch(libraryLinks());
+        console.log(links[linkId])
     }, [dispatch])
     return (
         <>
-            {linkId && links && <iframe style={{"width": "92.5%", "height":"97%"}} src={links[linkId]} />}
+            {linkId && links && <iframe style={{"width": "92.5%", "height":"97%"}} src={links[linkId].library_link_url}></iframe>}
         </>
     )
 };
